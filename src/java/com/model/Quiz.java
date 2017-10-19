@@ -15,8 +15,9 @@ import java.util.List;
  * @author TuanManh
  */
 public class Quiz {
-    private int qid,lid;
-    private String question,answer;
+
+    private int qid, lid;
+    private String question, answer;
 
     public Quiz() {
     }
@@ -27,26 +28,47 @@ public class Quiz {
         this.question = question;
         this.answer = answer;
     }
-    
-    public Quiz(String question, String answer, int lid){
+
+    public Quiz(String question, String answer, int lid) {
         this.question = question;
         this.answer = answer;
         this.lid = lid;
     }
-    
-    public Quiz getQuiz(int qid) throws Exception{
-        List<Quiz> quizs = new ArrayList<>();
-        String query = "select * from Quiz where qid " +qid;
+
+    public static Quiz getQuiz(int qid) throws Exception {
+
+        String query = "select * from Quiz where qid = " + qid;
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             int lid = rs.getInt("lid");
             String question = rs.getString("question");
             String answer = rs.getString("answer");
-            return new Quiz(question, answer, lid);
+            int id = rs.getInt("qid");
+            if (id == qid) {
+                return new Quiz(question, answer, lid);
+            }
+
         }
         return null;
     }
-   
     
+    public static Quiz createQuiz(String question, String anwser, int lid) throws Exception{
+        String query = "insert into Quiz values (N'"+question+"', N'"+anwser+"',"+lid+")";
+         Connection conn = new DBContext().getConnection();
+         ResultSet rs = conn.prepareStatement(query).executeQuery();
+          while (rs.next()) {
+               String ques = rs.getString("question");
+               String answer = rs.getString("answer");
+               int id = rs.getInt("lid");
+               return new Quiz(question, answer, lid);
+          }
+          return  null;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz{" + "qid=" + qid + ", lid=" + lid + ", question=" + question + ", answer=" + answer + '}';
+    }
+
 }
