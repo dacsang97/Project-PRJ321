@@ -80,7 +80,7 @@ public class User {
         } 
     }
     
-    public String getUser(int uid) throws Exception{
+    public static String getUser(int uid) throws Exception{
         String query = "select * from Users";
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
