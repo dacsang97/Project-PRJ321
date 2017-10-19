@@ -3,6 +3,7 @@ package com.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class User {
         while (rs.next()) {
             String user = rs.getString("username");
             String pass = rs.getString("password");
-            if(user.equals(username) && password.equals(password)){
+            if(user.equals(username) && pass.equals(password)){
                 return true;
             }
         }
@@ -79,5 +80,20 @@ public class User {
         } 
     }
     
+    public String getUser(int uid) throws Exception{
+        String query = "select * from Users";
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("uid");
+            String user = rs.getString("username");
+            if(id == uid){
+                return user;
+            }
+        }
+        rs.close();
+        conn.close();
+        return "Not found";
+    }
     
 }
