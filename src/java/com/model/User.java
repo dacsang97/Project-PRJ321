@@ -1,6 +1,11 @@
 
 package com.model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private int id;
     private String username;
@@ -47,6 +52,31 @@ public class User {
 
     public void setPermission(int permission) {
         this.permission = permission;
+    }
+    
+    
+    public boolean isLogin(String username, String password) throws Exception{     
+        String query = "select * from Users";
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            String user = rs.getString("username");
+            String pass = rs.getString("password");
+            if(user.equals(username) && password.equals(password)){
+                return true;
+            }
+        }
+        rs.close();
+        conn.close();
+        return false;
+    }
+    
+    public boolean isAdmin() throws Exception{     
+        if(permission == 1){
+            return true;
+        }else{
+            return false;
+        } 
     }
     
     
