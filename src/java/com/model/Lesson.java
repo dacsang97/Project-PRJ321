@@ -6,6 +6,7 @@
 package com.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,12 @@ public class Lesson {
     }
 
     public boolean createLesson(String title, int uid, int share) throws Exception{
-        String query = "insert into Lessons values('" + title + "', " + uid + ", " + share + ")";
-        int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
+        String query = "insert into Lessons values(?, ?, ?)";
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        ps.setString(1, title);
+        ps.setInt(2, uid);
+        ps.setInt(3, share);
+        int row = ps.executeUpdate();
         if(row > 0) return true;
         else return false;
     }
@@ -79,5 +84,11 @@ public class Lesson {
         if(row > 0) return true;
         else return false;
     }
+
+    @Override
+    public String toString() {
+        return lid + " " + title + " " + uid + " " + share;
+    }
+    
     
 }
