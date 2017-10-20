@@ -6,6 +6,7 @@
 package com.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,17 +54,15 @@ public class Quiz {
         return null;
     }
     
-    public static Quiz createQuiz(String question, String anwser, int lid) throws Exception{
-        String query = "insert into Quiz values (N'"+question+"', N'"+anwser+"',"+lid+")";
-         Connection conn = new DBContext().getConnection();
-         ResultSet rs = conn.prepareStatement(query).executeQuery();
-          while (rs.next()) {
-               String ques = rs.getString("question");
-               String answer = rs.getString("answer");
-               int id = rs.getInt("lid");
-               return new Quiz(question, answer, lid);
-          }
-          return  null;
+    public static boolean createQuiz(String question, String anwser, int lid) throws Exception{
+        String query = "insert into Quiz values (?, ?, ?)";
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        ps.setString(1, question);
+        ps.setString(2, anwser);
+        ps.setInt(3, lid);
+        int row = ps.executeUpdate();
+        if(row > 0) return true;
+        else return false;
     }
 
     @Override
