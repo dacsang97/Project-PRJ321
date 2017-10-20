@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,15 +58,20 @@ public class User {
         this.permission = permission;
     }
     
-    public boolean createUser(String username, String password, int permission) throws Exception{
+    public static int createUser(String username, String password, int permission) throws Exception{
         String query = "insert into Users values(?, ?, ?)";
-        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, username);
         ps.setString(2, password);
         ps.setInt(3, permission);
-        int row = ps.executeUpdate();
-        if(row > 0) return true;
-        else return false;
+        ps.executeUpdate();
+        
+        ResultSet rs = ps.getGeneratedKeys();
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            return id;
+        }
+        return -1;
     }
     
     public boolean isLogin(String username, String password) throws Exception{     
@@ -125,8 +131,11 @@ public class User {
         while (rs.next()) {
             String password = rs.getString("password");          
             if(password.equals(oldPassword)){
-                String query1 = "update Users set password = '"+ newPassword + "' where uid = '" + uid+"'";
-                new DBContext().getConnection().prepareStatement(query1).executeUpdate();
+                String query1 = "update Users set password = ? where uid = ?";
+                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
+                ps.setString(1, newPassword);
+                ps.setInt(2, uid);
+                ps.executeUpdate();
                 return true;
             }
         }
@@ -134,4 +143,11 @@ public class User {
         conn.close();
         return false;
    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username=" + username + ", password=" + password + ", permission=" + permission + '}';
+    }
+   
+   
 }

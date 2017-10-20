@@ -1,6 +1,7 @@
 package com.test;
 
 import com.model.User;
+import com.util.Faker;
 import com.util.Hash;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -14,10 +15,11 @@ public class TestUser extends TestCase {
     }
     
     public void testCreateUser() throws Exception{
-       String name = "phong99";
-       String pass = Hash.Sha256("123456");
-       int permission = 2;
-       assertEquals(true, a.createUser(name, pass,permission));
+       String username = Faker.randomString(8);
+       int id = User.createUser(username, Hash.Sha256("123456"), 2);
+       User user = new User(id, username, Hash.Sha256("123456"), 2);
+       int i = User.getIdUser(username);
+       assertEquals(i,id);
     }
     
     public void testGetIdUser() throws Exception{
@@ -31,8 +33,8 @@ public class TestUser extends TestCase {
     }
     public void testChangePassword() throws Exception{
         int uid = 1;
-        String oldPass = Hash.Sha256("123456");
-        String newPass = Hash.Sha256("1234567");
+        String oldPass = Hash.Sha256("1234567");
+        String newPass = Hash.Sha256("1234568");
         assertEquals(true, a.changePassword(uid, oldPass, newPass));
     }
     
