@@ -159,7 +159,6 @@ INSERT INTO Folders_PK_Lessons (fid, lid) VALUES ('8','7');
 INSERT INTO Folders_PK_Lessons (fid, lid) VALUES ('13','8');
 INSERT INTO Folders_PK_Lessons (fid, lid) VALUES ('13','9'); 
 
-
-
+select * from Users
 
 
