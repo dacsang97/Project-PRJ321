@@ -84,7 +84,41 @@ public class Lesson {
         if(row > 0) return true;
         else return false;
     }
-
+    //name == null, get all lesson where uid == uid and share == share
+    public List<Lesson> getListLesson(String title, int uid, int share) throws Exception{
+        List<Lesson> l = new ArrayList<>();
+        String query = "select * from Lessons";
+        int k = 0;
+        if(title != null) {
+            if(k == 0) query += " where ";
+            query += "title = '" + title + "'";
+            k++;
+        }
+        if(uid != -1) {
+            if(k == 0) query += " where ";
+            else if(k > 0) query += " and ";
+            query += "uid = " + uid;
+            k++;
+        }
+        if(share  != -1) {
+            if(k == 0) query += " where ";
+            else if(k > 0) query += " and ";
+            query += "share = " + share;
+        }
+        ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            int lid = rs.getInt("lid");
+            String titlee = rs.getString("title");
+            int uidd = rs.getInt("uid");
+            int sharee = rs.getInt("share");
+            l.add(new Lesson(lid, titlee, uidd, sharee));
+        }
+        rs.close();
+        return l;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return lid + " " + title + " " + uid + " " + share;
