@@ -64,6 +64,42 @@ public class Quiz {
         if(row > 0) return true;
         else return false;
     }
+    
+    public boolean UpdateQuiz(int qid, String question, String answer) throws Exception{
+         String query = "update Quiz set ";
+//         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+         int i = 0;
+         if(question != null) {
+            query += "question = '" + question + "'";
+            if(answer != null){
+                query += ",";
+            }
+            i++;
+        }
+         
+         if(answer != null){
+             query += "answer = '" + answer + "'";
+            i++; 
+         }
+         
+         if(question == null && answer == null){
+             return false;
+         }
+         
+        query += " where qid = " + qid;
+        int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
+        if(row > 0) return true;
+        else return false;
+         
+    }
+    
+      public boolean DeleteQuiz(int qid) throws Exception{
+        String query = "delete from Quiz where qid = " + qid;
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+         int row = ps.executeUpdate();
+        if(row > 0) return true;
+        else return false;
+    }
 
     @Override
     public String toString() {

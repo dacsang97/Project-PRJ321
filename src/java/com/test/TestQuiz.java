@@ -37,7 +37,15 @@ public class TestQuiz extends TestCase {
          assertEquals("Create fail.", true, a.createQuiz(quest, answer,id));
         
     }
-
+    
+    public void testUpdateQuiz() throws Exception {
+        assertEquals("Create fail.",true, a.UpdateQuiz(63,"hihi", "hoho"));
+    }
+    
+    public void testDeleteQuiz() throws Exception {
+        assertEquals(false, a.DeleteQuiz(60));
+    }
+    
     public static void main(String[] args) {
         junit.textui.TestRunner.run(new TestSuite(TestQuiz.class));
     }
