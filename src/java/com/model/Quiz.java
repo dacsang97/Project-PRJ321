@@ -82,7 +82,7 @@ public class Quiz {
             i++; 
          }
          
-         if(question == null && answer == null){
+         if(question == null || answer == null){
              return false;
          }
          
@@ -100,6 +100,23 @@ public class Quiz {
         if(row > 0) return true;
         else return false;
     }
+      
+      public ArrayList getLessonQuiz(int lid) throws Exception{
+          String query =  "select * from Quiz where lid = " + lid;
+          Connection conn = new DBContext().getConnection();
+          ResultSet rs = conn.prepareStatement(query).executeQuery();
+          ArrayList arr = new ArrayList();
+          while (rs.next()) {  
+               int qid = rs.getInt("qid");
+               String question = rs.getString("question");
+               String answer = rs.getString("answer");
+               int id = rs.getInt("lid");
+            
+              Object quiz[] = {qid, question, answer, id};
+              arr.add(quiz);
+          }
+          return  arr;
+      }
 
     @Override
     public String toString() {

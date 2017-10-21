@@ -34,7 +34,7 @@ public class TestQuiz extends TestCase {
       String answer = "ớ";
       int id = 1;
         
-         assertEquals("Create fail.", true, a.createQuiz(quest, answer,id));
+        assertEquals("Create fail.", true, a.createQuiz(quest, answer,id));
         
     }
     
@@ -43,7 +43,7 @@ public class TestQuiz extends TestCase {
     }
     
     public void testDeleteQuiz() throws Exception {
-        assertEquals(false, a.DeleteQuiz(60));
+        assertEquals(false, a.DeleteQuiz(57));
     }
     
     public static void main(String[] args) {
