@@ -39,6 +39,39 @@ public class TestLesson extends TestCase{
     public void testDeleteLesson() throws Exception {
         assertEquals(false, l.deleteLesson(15));
     }
+    //test getListLesson
+    //title = null
+    public void testgetListLessont() throws Exception {
+        assertEquals(4, l.getListLesson(null, 2, 3).size());
+    }
+    //uid = -1
+    public void testgetListLessonu() throws Exception {
+        assertEquals(1, l.getListLesson("Progetest1", -1, 3).size());
+    }
+    //share = -1
+    public void testgetListLessons() throws Exception {
+        assertEquals(1, l.getListLesson("Progetest1", 2, -1).size());
+    }
+    //title = null and uid = -1
+    public void testgetListLessontu() throws Exception {
+        assertEquals(9, l.getListLesson(null, -1, 3).size());
+    }
+    //title = null and share = -1
+    public void testgetListLessontts() throws Exception {
+        assertEquals(4, l.getListLesson(null, 2, -1).size());
+    }
+    //uid = -1 and share = -1
+    public void testgetListLessonus() throws Exception {
+        assertEquals(1, l.getListLesson("Progetest1", -1, -1).size());
+    }
+    //title = null, uid = -1, share = -1 (no para)
+    public void testgetListLessonttus() throws Exception {
+        assertEquals(9, l.getListLesson(null, -1, -1).size());
+    }
+    //full para
+    public void testgetListLesson() throws Exception {
+        assertEquals(1, l.getListLesson("Progetest1", 2, 3).size());
+    }
     public static void main(String[] args) {
         junit.textui.TestRunner.run(new TestSuite(TestLesson.class));
     }
