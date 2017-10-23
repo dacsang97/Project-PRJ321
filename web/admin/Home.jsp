@@ -1,7 +1,7 @@
 <%-- 
-    Document   : LoginSuccess
-    Created on : Oct 23, 2017, 6:33:24 PM
-    Author     : USER
+    Document   : Home
+    Created on : Oct 23, 2017, 10:07:03 PM
+    Author     : PhongPham
 --%>
 
 <%@page import="com.model.User"%>
@@ -13,7 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Login xong</h1>
-        <% User u = (User)session.getAttribute("user"); out.println(u.getUsername()); %>
+        <h1>
+            Not administrator 
+            ${sessionScope.LoginError.username}
+        </h1>
     </body>
 </html>
