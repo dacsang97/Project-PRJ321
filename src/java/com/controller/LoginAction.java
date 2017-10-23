@@ -37,20 +37,27 @@ public class LoginAction extends ActionSupport {
     }
     
     public LoginAction() {
-        session = (Map) ActionContext.getContext().get("session");
     }
     
     public String execute() throws Exception {
         User user = User.login(name, password);
+        System.out.println(user.getUsername());
         if(user != null) {
-            
+            session = (Map) ActionContext.getContext().get("session");
             session.put("user", user);
             return SUCCESS;
         } 
         return ERROR;
     }
+
+    public void setSession(Map session) {
+        this.session = session;
+    }
+    
+    
     
     public String logout() {
+        session = (Map) ActionContext.getContext().get("session");
         session.remove("user");
         return SUCCESS;
     }

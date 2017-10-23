@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h1>Login xong</h1>
         <% User u = (User)session.getAttribute("user"); out.println(u.getUsername()); %>
     </body>
 </html>
