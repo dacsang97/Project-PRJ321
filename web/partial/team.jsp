@@ -1,6 +1,5 @@
 <div class="section section-team text-center">
     <div class="container">
-        <h2 class="title">Here is our team</h2>
         <div class="team">
             <div class="row">
                 <div class="col-md-3">
