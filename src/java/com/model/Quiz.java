@@ -53,84 +53,83 @@ public class Quiz {
         }
         return null;
     }
-    
-    public static boolean createQuiz(String question, String anwser, int lid) throws Exception{
+
+    public static boolean createQuiz(String question, String anwser, int lid) throws Exception {
         String query = "insert into Quiz values (?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
         ps.setString(1, question);
         ps.setString(2, anwser);
         ps.setInt(3, lid);
         int row = ps.executeUpdate();
-        if(row > 0) return true;
-        else return false;
+        if (row > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-    public static boolean UpdateQuiz(int qid, String question, String answer) throws Exception{
-         String query = "update Quiz set ";
+
+    public static boolean UpdateQuiz(int qid, String question, String answer) throws Exception {
+        String query = "update Quiz set ";
 //         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-        
-         if(question != null) {
+
+        if (question != null) {
             query += "question = '" + question + "'";
-            if(answer != null){
+            if (answer != null) {
                 query += ",";
             }
-            
+
         }
-         
-         if(answer != null){
-             query += "answer = '" + answer + "'";
-            
-         }
-         
-         if(question == null || answer == null){
-             return false;
-         }
-         
+
+        if (answer != null) {
+            query += "answer = '" + answer + "'";
+
+        }
+
+        if (question == null || answer == null) {
+            return false;
+        }
+
         query += " where qid = " + qid;
         int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
-        if(row > 0) return true;
-        else return false;
-         
-    }
-    
-      public static boolean DeleteQuiz(int qid) throws Exception{
-          
-        String query1 = "select * from Quiz where qid =" +qid;
-        Connection conn = new DBContext().getConnection();
-        ResultSet rs = conn.prepareStatement(query1).executeQuery();
-        while(rs.next()){
-            int id = rs.getInt("qid");
-            if(qid == id){
-                String query = "delete from Quiz where qid = " + qid;
-                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-
-                int row = ps.executeUpdate();
-                if(row > 0) return true;
-                else return false;
-            }
+        if (row > 0) {
+            return true;
+        } else {
+            return false;
         }
-        
-        return false;
-        
-      }
-      
-      public static ArrayList<Quiz> getLessonQuiz(int lid) throws Exception{
-          ArrayList<Quiz> Quizs = new ArrayList<>();
-          String query =  "select * from Quiz where lid = " + lid;
-          Connection conn = new DBContext().getConnection();
-          ResultSet rs = conn.prepareStatement(query).executeQuery();
+
+    }
+
+    public static boolean DeleteQuiz(int qid) throws Exception {
+
+        String query = "delete from Quiz where qid = " + qid;
+        Connection conn = new DBContext().getConnection();
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        int row = ps.executeUpdate();
+        if (row > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public static ArrayList<Quiz> getLessonQuiz(int lid) throws Exception {
+        ArrayList<Quiz> Quizs = new ArrayList<>();
+        String query = "select * from Quiz where lid = " + lid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
 //          ArrayList arr = new ArrayList();
-          while (rs.next()) {  
-               int qid = rs.getInt("qid");
-               String question = rs.getString("question");
-               String answer = rs.getString("answer");
-               int id = rs.getInt("lid");
-               
-               Quizs.add(new Quiz(qid,id,question, answer));
-             
-          }
-            return Quizs;
-      }
+        while (rs.next()) {
+            int qid = rs.getInt("qid");
+            String question = rs.getString("question");
+            String answer = rs.getString("answer");
+            int id = rs.getInt("lid");
+
+            Quizs.add(new Quiz(qid, id, question, answer));
+
+        }
+        return Quizs;
+    }
 
     @Override
     public String toString() {

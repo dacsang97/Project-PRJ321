@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/node,code,netbeans,java-web
 
+src/java/com/model/DBContext.java
+
 ### Code ###
 # Visual Studio Code - https://code.visualstudio.com/
 .settings/
