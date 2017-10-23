@@ -14,5 +14,9 @@
         <action name="LoginAction" class="com.controller.LoginAction" method="logout">
             <result name="success">LogoutSuccess.jsp</result>
         </action>
+        
+        <action name="CreateLessonAction" class="com.controller.CreateLessonAction" method="execute">
+            
+        </action>
     </package>
 </struts>
