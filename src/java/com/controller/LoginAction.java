@@ -37,7 +37,6 @@ public class LoginAction extends ActionSupport {
     }
     
     public LoginAction() {
-        session = (Map) ActionContext.getContext().get("session");
     }
     
     public String execute() throws Exception {
@@ -49,9 +48,17 @@ public class LoginAction extends ActionSupport {
         } 
         return ERROR;
     }
+
+    public void setSession(Map session) {
+        this.session = session;
+    }
+    
+    
     
     public String logout() {
-        session.remove("user");
+        if (session != null) {
+            session.remove("user");
+        }
         return SUCCESS;
     }
 }
