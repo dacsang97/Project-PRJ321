@@ -125,19 +125,42 @@ public class User {
     }
     
    public boolean changePassword(int uid, String oldPassword, String newPassword) throws Exception{
-       String query = "select * from Users where uid = " + uid;
+        String query = "select * from Users where uid = " + uid;
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
         while (rs.next()) {
             String password = rs.getString("password");          
             if(password.equals(oldPassword)){
-                String query1 = "update Users set password = ? where uid = ?";
-                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
-                ps.setString(1, newPassword);
-                ps.setInt(2, uid);
-                ps.executeUpdate();
+                updatePassword(newPassword, uid);
                 return true;
             }
+        }
+        rs.close();
+        conn.close();
+        return false;
+   }
+   public void updatePassword(String newPassword, int uid) throws Exception{
+        String query1 = "update Users set password = ? where uid = ?";
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
+        ps.setString(1, newPassword);
+        ps.setInt(2, uid);
+        ps.executeUpdate();
+   }
+   public boolean updateUser(int uid, String password, int permission) throws Exception{
+        String query = "select * from Users where uid = " + uid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while(rs.next()){
+            updatePassword(password, uid);
+            int permiss = rs.getInt("permission");
+            if(permission != -1){
+                String query1 = "update Users set permission = ? where uid = ?";
+                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
+                ps.setInt(1, permission);
+                ps.setInt(2, uid);
+                ps.executeUpdate();
+            }
+            return true;
         }
         rs.close();
         conn.close();

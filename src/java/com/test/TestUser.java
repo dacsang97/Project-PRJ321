@@ -10,7 +10,7 @@ public class TestUser extends TestCase {
     User a = new User();
     public void testLogin() throws Exception {      
         String name = "admin";
-        String pass = Hash.Sha256("1234567");
+        String pass = Hash.Sha256("1234568");
         assertEquals("Login fail.", true, a.isLogin(name, pass));
     }
     
@@ -21,7 +21,12 @@ public class TestUser extends TestCase {
        int i = User.getIdUser(username);
        assertEquals(i,id);
     }
-    
+    public void testUpdateUser() throws Exception{
+        int id = 3;
+        String password = Hash.Sha256("12345678");
+        int permission = 3;
+        assertEquals(true, a.updateUser(id, password, permission));
+    }
     public void testGetIdUser() throws Exception{
         int id = 3; 
         assertEquals(id, User.getIdUser("phongpv"));
@@ -32,9 +37,9 @@ public class TestUser extends TestCase {
         assertEquals(username, User.getUser(1));
     }
     public void testChangePassword() throws Exception{
-        int uid = 1;
-        String oldPass = Hash.Sha256("1234567");
-        String newPass = Hash.Sha256("1234568");
+        int uid = 4;
+        String oldPass = Hash.Sha256("123456");
+        String newPass = Hash.Sha256("123456");
         assertEquals(true, a.changePassword(uid, oldPass, newPass));
     }
     
