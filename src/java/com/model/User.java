@@ -78,12 +78,13 @@ public class User {
         String query = "select * from Users";
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
+        String hashPassword = Hash.Sha256(password);
         while (rs.next()) {
             int id = rs.getInt("uid");
             String name = rs.getString("username");
             String pass = rs.getString("password");
             int permission = rs.getInt("permission");
-            if(name.equals(username) && pass.equals(password)){
+            if(name.equals(username) && pass.equals(hashPassword)){
                 return new User(id, name, pass, permission);
             }
         }

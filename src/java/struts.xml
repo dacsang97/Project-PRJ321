@@ -5,16 +5,14 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        
-        <action name="Login">
-            <result>Login.jsp</result>
-        </action>
-        
-        <action name="LoginProcess" class="com.model.User">
+               
+        <action name="LoginAction" class="com.controller.LoginAction" method="execute">
             <result name="success">LoginSuccess.jsp</result>
             <result name="error">LoginError.jsp</result>
         </action>
         
-        <action name="Logout" class=""
+        <action name="LoginAction" class="com.controller.LoginAction" method="logout">
+            <result name="success">LogoutSuccess.jsp</result>
+        </action>
     </package>
 </struts>
