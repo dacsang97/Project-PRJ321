@@ -31,7 +31,7 @@ public class Lesson {
         this.share = share;
     }
 
-    public boolean createLesson(String title, int uid, int share) throws Exception{
+    public static boolean createLesson(String title, int uid, int share) throws Exception{
         String query = "insert into Lessons values(?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
         ps.setString(1, title);
@@ -42,7 +42,7 @@ public class Lesson {
         else return false;
     }
 
-    public Lesson getLesson(int lid) throws Exception {
+    public static Lesson getLesson(int lid) throws Exception {
         String query = "select * from Lessons where lid = " + lid;
         ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
         while (rs.next()) {
@@ -56,7 +56,7 @@ public class Lesson {
         return null;
     }
     
-    public boolean updateLesson(int lid, String title, int uid, int share) throws Exception{
+    public static boolean updateLesson(int lid, String title, int uid, int share) throws Exception{
         String query = "update Lessons set ";
         int k = 0;
         if(title != null) {
@@ -78,14 +78,14 @@ public class Lesson {
         else return false;
     }
     
-    public boolean deleteLesson(int lid) throws Exception{
+    public static boolean deleteLesson(int lid) throws Exception{
         String query = "delete from Lessons where lid = " + lid;
         int row = new DBContext().getConnection().createStatement().executeUpdate(query);
         if(row > 0) return true;
         else return false;
     }
     //name == null, get all lesson where uid == uid and share == share
-    public List<Lesson> getListLesson(String title, int uid, int share) throws Exception{
+    public static List<Lesson> getListLesson(String title, int uid, int share) throws Exception{
         List<Lesson> l = new ArrayList<>();
         String query = "select * from Lessons";
         int k = 0;

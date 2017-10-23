@@ -74,20 +74,23 @@ public class User {
         return -1;
     }
     
-    public boolean isLogin(String username, String password) throws Exception{     
+    public static User login(String username, String password) throws Exception{     
         String query = "select * from Users";
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
+        String hashPassword = Hash.Sha256(password);
         while (rs.next()) {
-            String user = rs.getString("username");
+            int id = rs.getInt("uid");
+            String name = rs.getString("username");
             String pass = rs.getString("password");
-            if(user.equals(username) && pass.equals(password)){
-                return true;
+            int permission = rs.getInt("permission");
+            if(name.equals(username) && pass.equals(hashPassword)){
+                return new User(id, name, pass, permission);
             }
         }
         rs.close();
         conn.close();
-        return false;
+        return null;
     }
     
     public boolean isAdmin() throws Exception{     
@@ -124,7 +127,7 @@ public class User {
         return -1;
     }
     
-   public boolean changePassword(int uid, String oldPassword, String newPassword) throws Exception{
+   public static boolean changePassword(int uid, String oldPassword, String newPassword) throws Exception{
        String query = "select * from Users where uid = " + uid;
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();

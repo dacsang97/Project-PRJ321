@@ -7,11 +7,11 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class TestUser extends TestCase {
-    User a = new User();
     public void testLogin() throws Exception {      
         String name = "admin";
-        String pass = Hash.Sha256("1234567");
-        assertEquals("Login fail.", true, a.isLogin(name, pass));
+        String pass = Hash.Sha256("123456");
+        int permission = 1;
+        assertEquals("Login fail.", new User(1, name, pass, permission).toString(), User.login(name, pass).toString());
     }
     
     public void testCreateUser() throws Exception{
@@ -35,7 +35,7 @@ public class TestUser extends TestCase {
         int uid = 1;
         String oldPass = Hash.Sha256("1234567");
         String newPass = Hash.Sha256("1234568");
-        assertEquals(true, a.changePassword(uid, oldPass, newPass));
+        assertEquals(true, User.changePassword(uid, oldPass, newPass));
     }
     
     public void testGetUserNotFound() throws Exception {

@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Day la trang dang nhap</h1>
+        <form action="LoginAction" method="post">
+            User
+            <input type="text" name="name"/>
+            Pass
+            <input type="password" name="password" />
+            <input type="submit" value="submit" />
+        </form>
     </body>
 </html>
