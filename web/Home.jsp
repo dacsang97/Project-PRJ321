@@ -1,10 +1,9 @@
 <%-- 
-    Document   : LoginSuccess
-    Created on : Oct 23, 2017, 6:33:24 PM
-    Author     : USER
+    Document   : Home
+    Created on : Oct 23, 2017, 9:38:52 PM
+    Author     : PhongPham
 --%>
 
-<%@page import="com.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Login xong</h1>
-        <% User u = (User)session.getAttribute("user"); out.println(u.getUsername()); %>
+        <h1>Trang Home!</h1>
     </body>
 </html>
