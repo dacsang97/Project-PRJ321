@@ -59,6 +59,7 @@ public class User {
     }
     
     public static int createUser(String username, String password, int permission) throws Exception{
+        password = Hash.Sha256(password);
         String query = "insert into Users values(?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, username);
@@ -74,7 +75,8 @@ public class User {
         return -1;
     }
     
-    public boolean isLogin(String username, String password) throws Exception{     
+    public boolean isLogin(String username, String password) throws Exception{ 
+        password = Hash.Sha256(password);
         String query = "select * from Users";
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
@@ -126,6 +128,8 @@ public class User {
     
    public boolean changePassword(int uid, String oldPassword, String newPassword) throws Exception{
         String query = "select * from Users where uid = " + uid;
+        oldPassword = Hash.Sha256(oldPassword);
+        newPassword = Hash.Sha256(newPassword);
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
         while (rs.next()) {
@@ -140,6 +144,7 @@ public class User {
         return false;
    }
    public void updatePassword(String newPassword, int uid) throws Exception{
+        newPassword = Hash.Sha256(newPassword);
         String query1 = "update Users set password = ? where uid = ?";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
         ps.setString(1, newPassword);
@@ -147,24 +152,20 @@ public class User {
         ps.executeUpdate();
    }
    public boolean updateUser(int uid, String password, int permission) throws Exception{
-        String query = "select * from Users where uid = " + uid;
-        Connection conn = new DBContext().getConnection();
-        ResultSet rs = conn.prepareStatement(query).executeQuery();
-        while(rs.next()){
+        password = Hash.Sha256(password);
+        if(password != null) {
             updatePassword(password, uid);
-            int permiss = rs.getInt("permission");
-            if(permission != -1){
-                String query1 = "update Users set permission = ? where uid = ?";
-                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
-                ps.setInt(1, permission);
-                ps.setInt(2, uid);
-                ps.executeUpdate();
-            }
-            return true;
+        }else{
+            return false;
         }
-        rs.close();
-        conn.close();
-        return false;
+        String query = "update Users set ";
+        if(permission  != -1) {
+            query += "permission = " + permission;
+        }
+        query += " where uid = " + uid;
+        int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
+        if(row > 0) return true;
+        else return false;
    }
 
     @Override
