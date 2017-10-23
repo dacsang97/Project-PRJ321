@@ -79,7 +79,7 @@ public class User {
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
         while (rs.next()) {
-            int id = rs.getInt("id");
+            int id = rs.getInt("uid");
             String name = rs.getString("username");
             String pass = rs.getString("password");
             int permission = rs.getInt("permission");

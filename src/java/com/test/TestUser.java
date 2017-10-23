@@ -9,7 +9,7 @@ import junit.framework.TestSuite;
 public class TestUser extends TestCase {
     public void testLogin() throws Exception {      
         String name = "admin";
-        String pass = Hash.Sha256("1234567");
+        String pass = Hash.Sha256("123456");
         int permission = 1;
         assertEquals("Login fail.", new User(1, name, pass, permission).toString(), User.login(name, pass).toString());
     }
