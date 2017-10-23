@@ -14,7 +14,10 @@
             <result name="success">Home.jsp</result>
             <result name="error">Register.jsp</result>
         </action>
-        
+        <action name="EditProfileAction" class="com.controller.EditProfileAction" method="execute">
+            <result name="success">Profile.jsp</result>
+            <result name="error">EditProfile.jsp</result>
+        </action>
         <action name="LogoutAction" class="com.controller.LoginAction" method="logout">
             <result name="success">LogoutSuccess.jsp</result>
         </action>
