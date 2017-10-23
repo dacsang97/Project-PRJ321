@@ -59,6 +59,7 @@ public class User {
     }
     
     public static int createUser(String username, String password, int permission) throws Exception{
+        password = Hash.Sha256(password);
         String query = "insert into Users values(?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, username);
@@ -93,7 +94,7 @@ public class User {
         return null;
     }
     
-    public boolean isAdmin() throws Exception{     
+    public  boolean isAdmin() throws Exception{     
         if(permission == 1){
             return true;
         }else{
@@ -128,23 +129,49 @@ public class User {
     }
     
    public static boolean changePassword(int uid, String oldPassword, String newPassword) throws Exception{
-       String query = "select * from Users where uid = " + uid;
+        String query = "select * from Users where uid = " + uid;
+        oldPassword = Hash.Sha256(oldPassword);
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
         while (rs.next()) {
             String password = rs.getString("password");          
             if(password.equals(oldPassword)){
-                String query1 = "update Users set password = ? where uid = ?";
-                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query1);
-                ps.setString(1, newPassword);
-                ps.setInt(2, uid);
-                ps.executeUpdate();
+                updatePassword(newPassword, uid);
                 return true;
             }
         }
         rs.close();
         conn.close();
         return false;
+   }
+   public static boolean updatePassword(String newPassword, int uid) throws Exception{
+        newPassword = Hash.Sha256(newPassword);
+        String query = "update Users set ";
+        if(newPassword  != null) {
+            query += "password = '" + newPassword + "'";
+        }
+        query += " where uid = " + uid;
+        int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
+        if(row > 0) return true;
+        else return false;
+   }
+   public static boolean updateUser(int uid, String password, int permission) throws Exception{
+        password = Hash.Sha256(password);
+        if(password != null) {
+            updatePassword(password, uid);
+        }else{
+            return false;
+        }
+        String query = "update Users set ";
+        if(permission  != -1) {
+            query += "permission = " + permission;
+        }else{
+            return false;
+        }
+        query += " where uid = " + uid;
+        int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
+        if(row > 0) return true;
+        else return false;
    }
 
     @Override
