@@ -102,17 +102,20 @@ public class User {
         } 
     }
     
-    public static String getUser(int uid) throws Exception{
+    public static User getUser(int uid) throws Exception{
         String query = "select * from Users where uid = " + uid;
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
         while (rs.next()) {
-            String user = rs.getString("username");
-            return user;
+            int id = rs.getInt("uid");
+            String name = rs.getString("username");
+            String pass = rs.getString("password");
+            int permission = rs.getInt("permission");
+            return new User(id, name, pass, permission);
         }
         rs.close();
         conn.close();
-        return "Not found";
+        return null;
     }
     
     public static int getIdUser(String username) throws Exception{
