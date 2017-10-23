@@ -6,18 +6,18 @@
 package com.controller;
 
 import com.model.User;
+import static com.opensymphony.xwork2.Action.ERROR;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author USER
+ * @author PhongPham
  */
-public class LoginAction extends ActionSupport {
-    
-    String name, password;
+public class RegisterAction extends ActionSupport {
+    String name , password, re_password;
     Map session;
 
     public String getName() {
@@ -35,30 +35,39 @@ public class LoginAction extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public LoginAction() {
+
+    public String getRe_password() {
+        return re_password;
+    }
+
+    public void setRe_password(String re_password) {
+        this.re_password = re_password;
+    }
+
+    public Map getSession() {
+        return session;
+    }
+
+    public void setSession(Map session) {
+        this.session = session;
+    }
+
+    public RegisterAction() {
+        session = (Map) ActionContext.getContext().get("session");
     }
     
     public String execute() throws Exception {
-        User user = User.login(name, password);
-        System.out.println(user.getUsername());
-        if(user != null) {
+        if(!password.equals(re_password)){
+            return ERROR;
+        }
+        int id = User.createUser(name, password, 2); 
+        User user = User.getUser(id);
+        if(user != null) {          
             session = (Map) ActionContext.getContext().get("session");
             session.put("user", user);
             return SUCCESS;
         } 
         return ERROR;
     }
-
-    public void setSession(Map session) {
-        this.session = session;
-    }
     
-    
-    
-    public String logout() {
-        session = (Map) ActionContext.getContext().get("session");
-        session.remove("user");
-        return SUCCESS;
-    }
 }
