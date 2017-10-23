@@ -65,21 +65,21 @@ public class Quiz {
         else return false;
     }
     
-    public boolean UpdateQuiz(int qid, String question, String answer) throws Exception{
+    public static boolean UpdateQuiz(int qid, String question, String answer) throws Exception{
          String query = "update Quiz set ";
 //         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-         int i = 0;
+        
          if(question != null) {
             query += "question = '" + question + "'";
             if(answer != null){
                 query += ",";
             }
-            i++;
+            
         }
          
          if(answer != null){
              query += "answer = '" + answer + "'";
-            i++; 
+            
          }
          
          if(question == null || answer == null){
@@ -93,29 +93,43 @@ public class Quiz {
          
     }
     
-      public boolean DeleteQuiz(int qid) throws Exception{
-        String query = "delete from Quiz where qid = " + qid;
-        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-         int row = ps.executeUpdate();
-        if(row > 0) return true;
-        else return false;
-    }
+      public static boolean DeleteQuiz(int qid) throws Exception{
+          
+        String query1 = "select * from Quiz where qid =" +qid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query1).executeQuery();
+        while(rs.next()){
+            int id = rs.getInt("qid");
+            if(qid == id){
+                String query = "delete from Quiz where qid = " + qid;
+                PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+
+                int row = ps.executeUpdate();
+                if(row > 0) return true;
+                else return false;
+            }
+        }
+        
+        return false;
+        
+      }
       
-      public ArrayList getLessonQuiz(int lid) throws Exception{
+      public static ArrayList<Quiz> getLessonQuiz(int lid) throws Exception{
+          ArrayList<Quiz> Quizs = new ArrayList<>();
           String query =  "select * from Quiz where lid = " + lid;
           Connection conn = new DBContext().getConnection();
           ResultSet rs = conn.prepareStatement(query).executeQuery();
-          ArrayList arr = new ArrayList();
+//          ArrayList arr = new ArrayList();
           while (rs.next()) {  
                int qid = rs.getInt("qid");
                String question = rs.getString("question");
                String answer = rs.getString("answer");
                int id = rs.getInt("lid");
-            
-              Object quiz[] = {qid, question, answer, id};
-              arr.add(quiz);
+               
+               Quizs.add(new Quiz(qid,id,question, answer));
+             
           }
-          return  arr;
+            return Quizs;
       }
 
     @Override

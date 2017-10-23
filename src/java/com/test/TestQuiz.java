@@ -16,7 +16,7 @@ import junit.framework.TestSuite;
  * @author TuanManh
  */
 public class TestQuiz extends TestCase {
-    Quiz a = new Quiz();
+//    Quiz a = new Quiz();
     public void testGetQuiz() throws Exception {
         Quiz quiz = new Quiz("na", "na", 1);
 
@@ -30,21 +30,35 @@ public class TestQuiz extends TestCase {
     }
     
     public void testCreateQuiz() throws Exception{
-      String quest = "á";
-      String answer = "ớ";
+     String quest = "mahaza";
+     String answer = "faker";
       int id = 1;
         
-        assertEquals("Create fail.", true, a.createQuiz(quest, answer,id));
+        assertEquals("Create fail.", true,Quiz.createQuiz(quest, answer,id));
         
     }
     
     public void testUpdateQuiz() throws Exception {
-        assertEquals("Create fail.",true, a.UpdateQuiz(63,"hihi", "hoho"));
+        assertEquals(true, Quiz.UpdateQuiz(3,"sang", "phong"));
     }
     
     public void testDeleteQuiz() throws Exception {
-        assertEquals(false, a.DeleteQuiz(57));
+        assertEquals(true, Quiz.DeleteQuiz(4));
     }
+    
+    public void testDeleteFalse() throws Exception {
+        assertEquals(false, Quiz.DeleteQuiz(4));
+    }
+    
+    public void testLessQuiz() throws Exception{
+        assertEquals(26, Quiz.getLessonQuiz(26));
+    }
+    
+    public void testLessQuizFalse() throws Exception{
+        assertEquals(0, Quiz.getLessonQuiz(26));
+    }
+    
+    
     
     public static void main(String[] args) {
         junit.textui.TestRunner.run(new TestSuite(TestQuiz.class));
