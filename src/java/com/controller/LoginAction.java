@@ -42,9 +42,6 @@ public class LoginAction extends ActionSupport {
     
     public String execute() throws Exception {
         User user = User.login(name, password);
-        System.out.println(name);
-        System.out.println(password);
-        System.out.println(user.getUsername());
         if(user != null) {
             
             session.put("user", user);
