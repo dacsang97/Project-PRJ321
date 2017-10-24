@@ -21,6 +21,10 @@
             30
         </session-timeout>
     </session-config>
+    <context-param>
+        <param-name>sitename</param-name>
+        <param-value>Quizless</param-value>
+    </context-param>
     <welcome-file-list>
         <welcome-file>Home.jsp</welcome-file>
     </welcome-file-list>

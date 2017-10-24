@@ -18,6 +18,7 @@
         <%
             try {
                 int lid = Integer.parseInt(request.getParameter("lid"));
+                System.out.println(lid);
                 ArrayList<Quiz> quizs = Quiz.getLessonQuiz(lid);
                 request.setAttribute("quizs", quizs);
                 out.println(quizs.size());

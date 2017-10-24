@@ -1,28 +1,43 @@
-<%-- 
-    Document   : Profile
-    Created on : Oct 23, 2017, 11:04:19 PM
-    Author     : PhongPham
---%>
-
+<%@page import="com.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <table border="1" cellspacing="0" cellpadding="10">
-            <tr>
-                <th>Username</th>
-                <th>Permission</th>
-                <th>Change Password</th>
-            </tr>
-            <tr>
-                <td>${sessionScope.user.username}</td>
-                <td>${sessionScope.user.permission}</td>
-                <td><a href="EditProfile.jsp">Edit</a></td>
-            </tr>
-        </table>
-    </body>
-</html>
+<html lang="en">
+    <% request.setAttribute("title", "Trang chủ");
+    %>
+    <%@include file="./partial/header.jsp" %>
+    <%@include file="./partial/navigation.jsp" %>
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-rocket pull-xs-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Thông tin thành viên</h6>
+                        <%
+                            User u = (User) session.getAttribute("user");
+                            if (u.isAdmin()) {
+                        %>
+                        <span class="label label-danger"> Quản trị viên </span>
+                        <% } else { %>
+                        <span class="label label-success"> Thành viên </span>
+                        <% }%>
+                        <h2 class="m-b-20">${sessionScope.user.username}</h2>
+                        
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2 class="m-b-20" data-plugin="counterup">1,890</h2>
+                                Bài học
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="m-b-20" data-plugin="counterup">1,890</h2>
+                                Chuyên mục
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <%@include file="partial/footer.jsp" %>
