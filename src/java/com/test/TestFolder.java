@@ -16,30 +16,23 @@ import junit.framework.TestSuite;
  * @author TuanManh
  */
 public class TestFolder extends TestCase {
-//    public void testGetFolder() throws Exception {
-//         Folder folder = new Folder(1,"na", 1);
-//
-//        assertEquals(folder.toString(), Folder.getFolder(1).toString());
-//           int fid = 1;
-//           assertEquals("1 Progetest1 3", Folder.getFolder(fid).toString());
-//    }
-//    
+  
     
-//    public void testCreateFolder() throws Exception{
-//     String name = "mahaza";
-//     int uid = 1;
-//     int sharefolder = 2;
-//        
-//        assertEquals("Create fail.", true,Folder.createFolder(name, sharefolder,uid));
-//    }
-//    
-//     public void testDeleteFolder() throws Exception {
-//        assertEquals(true, Folder.DeleteFolder(4));
-//    }
-//    
-//    public void testDeleteFolderFalse() throws Exception {
-//        assertEquals(false,Folder.DeleteFolder(4));
-//    }
+    public void testCreateFolder() throws Exception{
+     String name = "uzi";
+     int uid = 1;
+     int sharefolder = 3;
+        
+        assertEquals("Create fail.", true,Folder.createFolder(name, uid, sharefolder));
+    }
+    
+     public void testDeleteFolder() throws Exception {
+        assertEquals(true, Folder.DeleteFolder(4));
+    }
+    
+    public void testDeleteFolderFalse() throws Exception {
+        assertEquals(false,Folder.DeleteFolder(1000));
+    }
     
     public void testGetListFolder() throws Exception{
         assertEquals(2, Folder.getListFolder(null, 2, 3).size());
@@ -48,21 +41,27 @@ public class TestFolder extends TestCase {
     
       //uid = -1
      public void testgetListFolderu() throws Exception {
-        assertEquals(7,Folder.getListFolder("mahaza", 2, 1).size());
+        assertEquals(7,Folder.getListFolder("mahaza", -1, 1).size());
     }
      
-     //name = null and uid = -1
+//     name = null and uid = -1
     public void testgetListLessontu() throws Exception {
-        assertEquals(2, Folder.getListFolder(null, 2, 3).size());
+        assertEquals(5, Folder.getListFolder(null, -1, 3).size());
     }
     
      //name = null and share = -1
     public void testgetListFolders() throws Exception {
-        assertEquals(3, Folder.getListFolder(null, 3, 1).size());
+        assertEquals(8, Folder.getListFolder(null, 3, -1).size());
     }
     // uid = -1 share = -1
     public void testgetListLessonus() throws Exception {
-        assertEquals(1, Folder.getListFolder("Tiếng Anh", 2, 2).size());
+            assertEquals(7, Folder.getListFolder("mahaza", -1, -1).size());
+    }
+    
+    //share = -1
+    
+    public void testgetListLessonss() throws Exception{
+        assertEquals(1, Folder.getListFolder("uzi", 2, -1).size());
     }
     
     
