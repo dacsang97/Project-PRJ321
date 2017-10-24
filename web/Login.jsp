@@ -1,60 +1,79 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+    <% request.setAttribute("title", "Đăng nhập");
+    %>
     <%@include file="./partial/header.jsp" %>
-    <div class="wrapper">
-        <div class="main">
-            <div class="section section-signup" style="background-image: url('assets/img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 90vh;">
-                <div class="container">
+    <div class="account-pages"></div>
+    <div class="clearfix"></div>
+    <div class="wrapper-page">
+
+        <div class="account-bg">
+            <div class="card-box m-b-0">
+                <div class="text-xs-center m-t-20">
+                    <a href="index.html" class="logo">
+                        <i class="ti-ruler-alt-2"></i>
+                        <span>${initParam.sitename}</span>
+                    </a>
+                </div>
+                <div class="m-t-10 p-20">
                     <div class="row">
-                        <div class="card card-signup" data-background-color="orange">
-                            <form class="form" method="post" action="LoginAction">
-                                <div class="header text-center">
-                                    <h4 class="title title-up">Login</h4>
-                                    <div class="social-line">
-                                        <a href="#pablo" class="btn btn-neutral btn-facebook btn-icon btn-round">
-                                            <i class="fa fa-facebook-square"></i>
-                                        </a>
-                                        <a href="#pablo" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                        <a href="#pablo" class="btn btn-neutral btn-google btn-icon btn-round">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons users_circle-08"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="Username" name="name">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons objects_key-25"></i>
-                                        </span>
-                                        <input type="password" placeholder="Password" class="form-control" name="password">
-                                    </div>
-                                    <!-- If you want to add a checkbox to this form, uncomment this code -->
-                                    <!-- <div class="checkbox">
-	  								<input id="checkboxSignup" type="checkbox">
-	  									<label for="checkboxSignup">
-	  									Unchecked
-	  									</label>
-	  						  		</div> -->
-                                </div>
-                                <div class="footer text-center">
-                                    <button type="submit" class="btn btn-neutral btn-round btn-lg">Login</button>
-                                </div>
-                            </form>
+                        <div class="col-xs-12 text-xs-center">
+                            <h6 class="text-muted text-uppercase m-b-0 m-t-0">Đăng nhập</h6>
                         </div>
                     </div>
-                    <div class="col text-center">
-                        <a href="./Register.jsp" class="btn btn-simple btn-round btn-white btn-lg" target="_blank">View Signup Page</a>
-                    </div>
+                    <form class="m-t-20" action="LoginAction" method="POST">
+
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" required="" name="name" placeholder="Tài khoản">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="password" required="" name="password" placeholder="Mật khẩu">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <div class="checkbox checkbox-custom">
+                                    <input id="checkbox-signup" type="checkbox">
+                                    <label for="checkbox-signup">
+                                        Ghi nhớ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center row m-t-10">
+                            <div class="col-xs-12">
+                                <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Đăng nhập</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-t-30 m-b-0">
+                            <div class="col-sm-12">
+                                <a href="pages-recoverpw.html" class="text-muted"><i class="fa fa-lock m-r-5"></i> Quên mật khẩu?</a>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
+
+                <div class="clearfix"></div>
             </div>
         </div>
+        <!-- end card-box-->
+
+        <div class="m-t-20">
+            <div class="text-xs-center">
+                <p class="text-white">Bạn chưa có tài khoản? <a href="./Register.jsp" class="text-white m-l-5"><b>Đăng kí</b></a></p>
+            </div>
+        </div>
+
     </div>
+    <!-- end wrapper page -->
+
     <%@include file="partial/footer.jsp" %>
