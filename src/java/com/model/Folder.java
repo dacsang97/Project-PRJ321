@@ -8,6 +8,7 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,17 @@ public class Folder {
         this.uid = uid;
         this.name = name;
         this.sharefolder = sharefolder;
+    }
+    
+    public static int getIdFolder(int fid) throws Exception{
+        String query = "select * from Folders where fid = " + fid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            int uid = rs.getInt("uid");
+            return uid;
+        }
+        return -1;
     }
     
      public static Folder getFolder(int fid) throws Exception {

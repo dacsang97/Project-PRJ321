@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author PhongPham
  */
-public class PermissionFilter implements Filter {
+public class LoginFilter implements Filter {
     
     private static final boolean debug = true;
 
@@ -33,13 +33,13 @@ public class PermissionFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public PermissionFilter() {
+    public LoginFilter() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("PermissionFilter:DoBeforeProcessing");
+            log("LoginFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -67,7 +67,7 @@ public class PermissionFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("PermissionFilter:DoAfterProcessing");
+            log("LoginFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -103,11 +103,10 @@ public class PermissionFilter implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("PermissionFilter:doFilter()");
+            log("LoginFilter:doFilter()");
         }
         
         doBeforeProcessing(request, response);
-        
         
         Throwable problem = null;
         try {
@@ -115,12 +114,12 @@ public class PermissionFilter implements Filter {
             HttpServletResponse rep = (HttpServletResponse)response;
             HttpSession session = req.getSession();
             User u = (User)session.getAttribute("user");
-            if(u == null || !u.isAdmin()){
-                session.setAttribute("LoginError", u);
+            if(u == null){
+                session.setAttribute("LoginError", "error");
                 String contextPath = req.getContextPath();
                 //req.getServletPath();
             }
-
+            
             
             chain.doFilter(request, response);
         } catch (Throwable t) {
@@ -175,7 +174,7 @@ public class PermissionFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("PermissionFilter:Initializing filter");
+                log("LoginFilter:Initializing filter");
             }
         }
     }
@@ -186,9 +185,9 @@ public class PermissionFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("PermissionFilter()");
+            return ("LoginFilter()");
         }
-        StringBuffer sb = new StringBuffer("PermissionFilter(");
+        StringBuffer sb = new StringBuffer("LoginFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
