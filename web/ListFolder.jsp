@@ -17,6 +17,37 @@
     </head>
     <body>
        
+        <form action="ListFolder.jsp">
+             Show <select name="txtSize" onchange="document.forms[0].submit()">
+                <option value="5" <c:if test="${param.txtSize == 5}">Selected</c:if>>5 </option>
+                <option value="10"<c:if test="${param.txtSize == 10}">Selected</c:if>>10</option>
+                <option value="15"<c:if test="${param.txtSize == 15}">Selected</c:if>>15</option>
+            </select> 
+        </form>
+            
+        <jsp:useBean id="folder" class="com.bean.ListFolderBean" scope="request"/>
+        <jsp:setProperty name="folder" property="user" value="${sessionScope.user}"/>
+        <jsp:setProperty name="folder" property="pageSize" param="txtSize"/>
+        <jsp:setProperty name="folder" property="page" param="page"/>
         
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>ShareFolder</th>
+            </tr>
+            <c:forEach var="l" items="${folder.listfolder}">
+                <tr>
+                    <td>${l.name}</td>
+                    <td>${l.sharefolder}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        
+         <p>
+            <c:forEach var="i" begin="1" end="${folder.totalPage}">
+                <a href="ListFolder.jsp?page=${i}&txtSize=${param.txtSize}">${i}</a> 
+            </c:forEach>        
+        </p>
+        Size: ${folder.size}
     </body>
 </html>

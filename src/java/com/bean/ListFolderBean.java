@@ -17,12 +17,41 @@ import java.util.List;
  */
 public class ListFolderBean {
     private User user;
-
+    private int page, pageSize;
+    int size;
+    
     public ListFolderBean() {
-    }
+        page = 0;
+        pageSize = 0;    }
 
     public ListFolderBean(User user) {
         this.user = user;
+        this.page = page;
+        this.pageSize = pageSize;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public User getUser() {
@@ -33,13 +62,24 @@ public class ListFolderBean {
         this.user = user;
     }
     
-   public List<Folder> getListFolder() throws Exception{
+    public int getTotalPage() throws Exception {
+        if(size % pageSize == 0) return size / pageSize;
+        else return 1 + size / pageSize;
+    }
+    
+   public List<Folder> getListfolder() throws Exception{
+             List<Folder> list = new ArrayList<>();
+             
+                if(page == 0) page = 1;
+                if(pageSize == 0) pageSize = 5;
+                int from = (page - 1) * pageSize;
+                int to = page * pageSize;
             if(user == null){
-                return Folder.getListFolder(null, -1, 3);
+               list = Folder.getListFolder(null, -1, 3);
 
                  }
             else{
-                List<Folder> list = new ArrayList<>();
+              
                 List<Folder> f1 = Folder.getListFolder(user.getUsername(), user.getId(), 3);
                 List<Folder> f2 = Folder.getListFolder(user.getUsername(), user.getId(), 2);
                 List<Folder> f3 = Folder.getListFolder(user.getUsername(), user.getId(), 1);
@@ -51,7 +91,9 @@ public class ListFolderBean {
                 
                 
             }
-            
+        size = list.size();
+        if(to >= size) to = size;
+        return list.subList(from, to);
    }
         
 }
