@@ -17,6 +17,10 @@ import java.util.List;
  * @author TuanManh
  */
 public class Folder {
+
+    public static void addAll(List<Folder> f1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int fid, uid,sharefolder;
     private String name;
   
@@ -161,5 +165,27 @@ public class Folder {
                         f.add(new Folder(fid, uids, names, sharefoldes));
                     }
                return f;
+        }
+        
+        public static boolean getCountFolder(int uid) throws Exception{
+            String query = "select count(*) from Folders";
+//            ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
+//            int k = 0;
+            if(uid != -1){
+//                if(k == 0) query += " where ";
+//                    else if(k > 0) query += " and ";
+//                    query += "uid = " + uid;
+//                    k++;
+
+            query += "where uid = " +uid;
+            }
+        Connection conn = new DBContext().getConnection();
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        int row = ps.executeUpdate();
+        if (row > 0) {
+            return true;
+        } else {
+            return false;
+        }
         }
 }
