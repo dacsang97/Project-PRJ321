@@ -16,13 +16,15 @@ import java.util.List;
  * @author TuanManh
  */
 public class ListFolderBean {
+
     private User user;
     private int page, pageSize;
     int size;
-    
+
     public ListFolderBean() {
         page = 0;
-        pageSize = 0;    }
+        pageSize = 0;
+    }
 
     public ListFolderBean(User user) {
         this.user = user;
@@ -61,43 +63,49 @@ public class ListFolderBean {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    public int getTotalPage() throws Exception {
-        if(size % pageSize == 0) return size / pageSize;
-        else return 1 + size / pageSize;
-    }
-    
-   public List<Folder> getListfolder() throws Exception{
-             List<Folder> list = new ArrayList<>();
-             
-                if(page == 0) page = 1;
-                if(pageSize == 0) pageSize = 5;
-                int from = (page - 1) * pageSize;
-                int to = page * pageSize;
-                
-             
-            if(user == null){
-               list = Folder.getListFolder(null, -1, 3);
 
-            }else if(user.isAdmin()){
-                      list = Folder.getListFolder(null, -1, -1);
-                 }
-            else{
-              
-                List<Folder> f1 = Folder.getListFolder(null, -1, 3);
-                List<Folder> f2 = Folder.getListFolder(null, -1, 2);
-                List<Folder> f3 = Folder.getListFolder(user.getUsername(), user.getId(), 1);
-                
-                list.addAll(f1);
-                list.addAll(f2);
-                list.addAll(f3);
-                return list;
-                
-                
-            }
+    public int getTotalPage() throws Exception {
+        if (size % pageSize == 0) {
+            return size / pageSize;
+        } else {
+            return 1 + size / pageSize;
+        }
+    }
+
+    public List<Folder> getListfolder() throws Exception {
+        List<Folder> list = new ArrayList<>();
+
+        if (page == 0) {
+            page = 1;
+        }
+        if (pageSize == 0) {
+            pageSize = 5;
+        }
+        int from = (page - 1) * pageSize;
+        int to = page * pageSize;
+
+        if (user == null) {
+            list = Folder.getListFolder(null, -1, 3);
+
+        } else if (user.isAdmin()) {
+            list = Folder.getListFolder(null, -1, -1);
+        } else {
+
+            List<Folder> f1 = Folder.getListFolder(null, -1, 3);
+            List<Folder> f2 = Folder.getListFolder(null, -1, 2);
+            List<Folder> f3 = Folder.getListFolder(user.getUsername(), user.getId(), 1);
+
+            list.addAll(f1);
+            list.addAll(f2);
+            list.addAll(f3);
+            return list;
+
+        }
         size = list.size();
-        if(to >= size) to = size;
+        if (to >= size) {
+            to = size;
+        }
         return list.subList(from, to);
-   }
-        
+    }
+
 }
