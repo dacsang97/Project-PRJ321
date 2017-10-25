@@ -36,8 +36,8 @@
         <jsp:setProperty name="folder" property="pageSize" param="txtSize"/>
         <table border="1" cellspacing="1" cellpadding="10">
             <tr>
-                <th>Question</th>
-                <th>Answer</th>
+                <th>Tên</th>
+                <th>Trạng thái</th>
             </tr>
             <c:forEach var="d" items="${folder.lesson}">
                     <tr>
