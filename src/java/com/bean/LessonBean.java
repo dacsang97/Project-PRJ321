@@ -71,6 +71,8 @@ public class LessonBean {
         int from = (page - 1) * pageSize;
         int to = page * pageSize;
         List<Lesson> lessons = new ArrayList<>();
+        
+    
         if(user == null) {
             lessons = Lesson.getListLesson(-1, null, -1, 3);
         }

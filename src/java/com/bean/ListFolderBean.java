@@ -74,14 +74,18 @@ public class ListFolderBean {
                 if(pageSize == 0) pageSize = 5;
                 int from = (page - 1) * pageSize;
                 int to = page * pageSize;
+                
+             
             if(user == null){
                list = Folder.getListFolder(null, -1, 3);
 
+            }else if(user.isAdmin()){
+                      list = Folder.getListFolder(null, -1, -1);
                  }
             else{
               
-                List<Folder> f1 = Folder.getListFolder(user.getUsername(), user.getId(), 3);
-                List<Folder> f2 = Folder.getListFolder(user.getUsername(), user.getId(), 2);
+                List<Folder> f1 = Folder.getListFolder(null, -1, 3);
+                List<Folder> f2 = Folder.getListFolder(null, -1, 2);
                 List<Folder> f3 = Folder.getListFolder(user.getUsername(), user.getId(), 1);
                 
                 list.addAll(f1);
