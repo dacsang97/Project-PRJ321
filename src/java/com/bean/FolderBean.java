@@ -120,9 +120,6 @@ public class FolderBean {
         list.addAll(type1);
         list.addAll(type2);
         list.addAll(type3);
-        for(Lesson l : list) {
-            System.out.println(l);
-        }     
         list1 = addList(list, list1, from, to);
         return list1;
     }
