@@ -1,7 +1,13 @@
+<%@page import="com.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <% request.setAttribute("title", "Đăng kí");
+        User u = (User)session.getAttribute("user");
+       if(u != null){
+           response.sendRedirect("./Home.jsp");
+       }
+
        %>
     <%@include file="./partial/header.jsp" %>
     <div class="account-pages"></div>

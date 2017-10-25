@@ -58,7 +58,6 @@ public class EditProfileAction extends ActionSupport {
         }
         session = (Map) ActionContext.getContext().get("session");
         User user = (User)session.get("user");
-        System.out.println(user.getId());
         boolean change = User.changePassword(user.getId(), oldPass, newPass);
         if(change == true) {          
             return SUCCESS;

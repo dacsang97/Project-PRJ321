@@ -31,6 +31,53 @@ public class Lesson {
         this.share = share;
     }
 
+    public int getLid() {
+        return lid;
+    }
+
+    public void setLid(int lid) {
+        this.lid = lid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getShare() {
+        return share;
+    }
+
+    public void setShare(int share) {
+        this.share = share;
+    }
+    
+    public String getTypeShare(){
+        switch(share){
+            case 1:
+                return "Chỉ mình tôi";
+            case 2:
+                return "Thành viên";
+            case 3:
+                return "Công khai";
+            default:
+                return null;
+        }
+    }
+    
+    
+
     public static boolean createLesson(String title, int uid, int share) throws Exception{
         String query = "insert into Lessons values(?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
@@ -85,10 +132,15 @@ public class Lesson {
         else return false;
     }
     //name == null, get all lesson where uid == uid and share == share
-    public static List<Lesson> getListLesson(String title, int uid, int share) throws Exception{
+    public static List<Lesson> getListLesson(int fid, String title, int uid, int share) throws Exception{
         List<Lesson> l = new ArrayList<>();
-        String query = "select * from Lessons";
+        String query = "select * from Lessons as les";
         int k = 0;
+        if(fid != -1){
+            query += " INNER JOIN Folders_PK_Lessons as fpk on les.lid = fpk.lid "
+                    + "INNER JOIN Folders as fol on fpk.fid = fol.fid  where fpk.fid = "+fid+" ";
+            k++;
+        }
         if(title != null) {
             if(k == 0) query += " where ";
             query += "title = '" + title + "'";
@@ -97,7 +149,7 @@ public class Lesson {
         if(uid != -1) {
             if(k == 0) query += " where ";
             else if(k > 0) query += " and ";
-            query += "uid = " + uid;
+            query += "les.uid = " + uid;
             k++;
         }
         if(share  != -1) {

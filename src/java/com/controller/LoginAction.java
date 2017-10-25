@@ -45,6 +45,7 @@ public class LoginAction extends ActionSupport {
         if(user != null) {
             session = (Map) ActionContext.getContext().get("session");
             session.put("user", user);
+            session.put("LoginError", "");
             return SUCCESS;
         } 
         return ERROR;
