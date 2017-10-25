@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="Product.jsp">
+        <form action="ListLesson.jsp">
             Show <select name="txtSize" onchange="document.forms[0].submit()">
                 <option value="5" <c:if test="${param.txtSize == 5}">Selected</c:if>>5 </option>
                 <option value="10"<c:if test="${param.txtSize == 10}">Selected</c:if>>10</option>
@@ -26,15 +26,21 @@
         <jsp:setProperty name="lesson" property="page" param="page"/>
         <table>
             <tr>
-                <th></th>
-                <th></th>
+                <th>Tên</th>
+                <th>Trạng thái</th>
             </tr>
             <c:forEach var="l" items="${lesson.lessons}">
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>${l.title}</td>
+                    <td>${l.typeShare}</td>
                 </tr>
             </c:forEach>
         </table>
+        <p>
+            <c:forEach var="i" begin="1" end="${lesson.totalPage}">
+                <a href="ListLesson.jsp?page=${i}&txtSize=${param.txtSize}">${i}</a> 
+            </c:forEach>        
+        </p>
+        Size: ${lesson.size}
     </body>
 </html>

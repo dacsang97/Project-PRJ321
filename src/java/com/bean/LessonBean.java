@@ -19,6 +19,7 @@ import java.util.List;
 public class LessonBean {
     private int page, pageSize;
     private User user;
+    int size;
 
     public LessonBean() {
         page = 0;
@@ -54,12 +55,21 @@ public class LessonBean {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public int getSize() {
+        return size;
+    }
+    
+    public int getTotalPage() throws Exception {
+        if(size % pageSize == 0) return size / pageSize;
+        else return 1 + size / pageSize;
+    }
     
     public List<Lesson> getLessons() throws Exception{
         if(page == 0) page = 1;
         if(pageSize == 0) pageSize = 5;
         int from = (page - 1) * pageSize;
-        int to = page * pageSize - 1;
+        int to = page * pageSize;
         List<Lesson> lessons = new ArrayList<>();
         if(user == null) {
             lessons = Lesson.getListLesson(-1, null, -1, 3);
@@ -72,6 +82,8 @@ public class LessonBean {
             lessons.addAll(l2);
             lessons.addAll(l3);
         }
+        size = lessons.size();
+        if(to >= size) to = size;
         return lessons.subList(from, to);
     }
 }
