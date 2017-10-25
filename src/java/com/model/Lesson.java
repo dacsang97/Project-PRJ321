@@ -169,7 +169,14 @@ public class Lesson {
         return l;
     }
     
-    
+    public static int getCountLesson(int uid) throws Exception {
+        String query = "select count(*) from Lessons";
+        if(uid != -1) query += " where uid = " + uid;
+        ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        return count;
+    }
     
     @Override
     public String toString() {
