@@ -74,6 +74,9 @@ public class LessonBean {
         if(user == null) {
             lessons = Lesson.getListLesson(-1, null, -1, 3);
         }
+        else if(user.isAdmin()) {
+            lessons = Lesson.getListLesson(-1, null, -1, -1);
+        }
         else {
             List<Lesson> l1 = Lesson.getListLesson(-1, null, -1, 3);
             List<Lesson> l2 = Lesson.getListLesson(-1, null, -1, 2);
