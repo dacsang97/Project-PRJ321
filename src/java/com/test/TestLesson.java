@@ -72,6 +72,9 @@ public class TestLesson extends TestCase{
 //    public void testgetListLesson() throws Exception {
 //        assertEquals(1, l.getListLesson("Progetest1", 2, 3).size());
 //    }
+    public void testgetCountLesson() throws Exception {
+        assertEquals(10, l.getCountLesson(-1));
+    }
     public static void main(String[] args) {
         junit.textui.TestRunner.run(new TestSuite(TestLesson.class));
     }
