@@ -97,24 +97,14 @@ public class FolderBean {
         List<Lesson> list1 = new ArrayList<>();
         if (uid <= 0) {
             list.addAll(Lesson.getListLesson(fid, null, -1, 3));
-            for (int i = from; i <= to; i++) {
-                if (i < list.size()) {
-                    list1.add(list.get(i));
-                }
-            }
-            size = list.size();
+            list1 = addList(list, list1, from, to);
             return list1;
         }
         User u = User.getUser(uid);
         if (u.isAdmin()) {
             list.clear();
             list.addAll(Lesson.getListLesson(fid, null, -1, -1));
-            for (int i = from; i < to; i++) {
-                if (i < list.size()) {
-                    list1.add(list.get(i));
-                }
-            }
-            size = list.size();
+            list1 = addList(list, list1, from, to);
             return list1;
         }
 
@@ -130,13 +120,21 @@ public class FolderBean {
         list.addAll(type1);
         list.addAll(type2);
         list.addAll(type3);
-        for (int i = from; i < to; i++) {
+        for(Lesson l : list) {
+            System.out.println(l);
+        }     
+        list1 = addList(list, list1, from, to);
+        return list1;
+    }
+    
+    public List<Lesson> addList(List<Lesson> list, List<Lesson> listTemp, int from, int to){
+        for (int i = from-1; i < to; i++) {
             if (i < list.size()) {
-                list1.add(list.get(i));
+                listTemp.add(list.get(i));
             }
         }
         size = list.size();
-        return list1;
+        return listTemp;
     }
 
 }
