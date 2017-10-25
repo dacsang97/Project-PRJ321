@@ -10,7 +10,7 @@
 <%@page import="com.model.Lesson"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -23,7 +23,18 @@
         <jsp:useBean id="folder" class="com.bean.FolderBean" scope="request"/>
         <jsp:setProperty name="folder" property="fid" param="fid"/>
         <jsp:setProperty name="folder" property="uid" value="${sessionScope.user.id}" />
-        <table>
+        
+        <form action="Folder.jsp">
+            Show <select name="txtSize" onchange="document.forms[0].submit()">
+                <option value="5" <c:if test="${param.txtSize == 5}">Selected</c:if>> 5</option>
+                <option value="10" <c:if test="${param.txtSize == 10}">Selected</c:if>> 10</option>
+                <option value="15" <c:if test="${param.txtSize == 15}">Selected</c:if>> 15</option>            
+            </select> per page
+            <input type="submit" value="Show"/>
+        </form>
+        <jsp:setProperty name="folder" property="page" param="page"/>
+        <jsp:setProperty name="folder" property="pageSize" param="txtSize"/>
+        <table border="1" cellspacing="1" cellpadding="10">
             <tr>
                 <th>Question</th>
                 <th>Answer</th>
@@ -35,5 +46,11 @@
                     </tr>
             </c:forEach>
         </table>
+        <jsp:setProperty name="folder" property="size" value="${folder.size}" />
+        <p>
+            <c:forEach var="i" begin="1" end="${folder.totalPage}">
+                <a href="Folder.jsp?page=${i}&txtSize=${param.txtSize}">${i}</a> |
+            </c:forEach>        
+        </p>
     </body>
 </html>
