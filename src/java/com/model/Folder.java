@@ -17,6 +17,10 @@ import java.util.List;
  * @author TuanManh
  */
 public class Folder {
+
+    public static void addAll(List<Folder> f1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int fid, uid,sharefolder;
     private String name;
   

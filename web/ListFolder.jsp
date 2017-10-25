@@ -16,16 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            User u = (User)session.getAttribute("user");
-            if(u == null){
-                List<Folder> f = Folder.getListFolder(null, -1, 3);
-                
-            }
-//            else{
-//                List<Folder> f = Folder.getListFolder(u.getUsername(), u.getId(), 3);
-//            }
-            %>
+       
         
     </body>
 </html>
