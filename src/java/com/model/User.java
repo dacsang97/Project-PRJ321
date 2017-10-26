@@ -176,7 +176,22 @@ public class User {
         if(row > 0) return true;
         else return false;
    }
-
+    public static List<User> getListUser() throws Exception{
+        String query = "select * from Users";
+        List<User> user = new ArrayList<>();
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("uid");
+            String username = rs.getString("username");
+            String pass = rs.getString("password");
+            int permission = rs.getInt("permission");
+            user.add(new User(id, username, pass, permission));
+        }
+        rs.close();
+        conn.close();
+        return user;
+    }
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", password=" + password + ", permission=" + permission + '}';
