@@ -20,7 +20,9 @@ public class Lesson {
     private int lid;
     private String title;
     private int uid, share;
-
+    User author;
+    String name;
+    
     public Lesson() {
     }
 
@@ -87,6 +89,12 @@ public class Lesson {
         int row = ps.executeUpdate();
         if(row > 0) return true;
         else return false;
+    }
+    
+    public String getAuthor() throws Exception{
+        author = User.getUser(uid);
+        name = author.getUsername();
+        return name;
     }
 
     public static Lesson getLesson(int lid) throws Exception {
