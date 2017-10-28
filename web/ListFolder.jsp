@@ -3,7 +3,8 @@
     Created on : Oct 24, 2017, 9:32:42 PM
     Author     : TuanManh
 --%>
-
+<%@page import="com.model.User"%>
+<%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.model.Folder"%>
 <%@page import="java.util.List"%>
@@ -42,6 +43,8 @@
                 <tr>
                     <td>${l.name}</td>
                     <td>${l.sharefolder}</td>
+                    <td>${l.author}</td>
+                    
               
                 </tr>
             </c:forEach>
