@@ -6,7 +6,7 @@
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="index.html" class="logo">
+                <a href="./" class="logo">
                     <i class="ti-ruler-alt-2"></i>
                     <span>Quizless</span>
                 </a>
@@ -106,22 +106,22 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
                     <li>
-                        <a href="index.html"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="./"><i class="zmdi zmdi-home"></i> <span> Trang chủ </span> </a>
                     </li>
                     <li class="has-submenu">
-                        <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> Bài học </span> </a>
+                        <a href="./ListLesson.jsp"><i class="zmdi zmdi-shape"></i> <span> Bài học </span> </a>
                         <ul class="submenu">
-                            <li><a href="ui-buttons.html">Danh sách bài học</a></li>
-                            <li><a href="ui-buttons.html">Tạo bài học mới</a></li>
-                            <li><a href="ui-cards.html">Bài học của tôi</a></li>
+                            <li><a href="./ListLesson.jsp">Danh sách bài học</a></li>
+                            <li><a href="./CreateLesson.jsp">Tạo bài học mới</a></li>
+                            <li><a href="./ListLesson.jsp">Bài học của tôi</a></li>
                         </ul>
                     </li>
                     <li class="has-submenu">
-                        <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> Chuyên mục </span> </a>
+                        <a href="./ListFolder.jsp"><i class="zmdi zmdi-storage"></i> <span> Chuyên mục </span> </a>
                         <ul class="submenu">
-                            <li><a href="ui-buttons.html">Danh sách chuyên mục</a></li>
-                            <li><a href="ui-buttons.html">Tạo chuyên mục mới</a></li>
-                            <li><a href="ui-cards.html">Chuyên mục của tôi</a></li>
+                            <li><a href="./ListFolder.jsp">Danh sách chuyên mục</a></li>
+                            <li><a href="./CreateFolder.jsp">Tạo chuyên mục mới</a></li>
+                            <li><a href="./ListFolder.jsp">Chuyên mục của tôi</a></li>
                         </ul>
                     </li>
 

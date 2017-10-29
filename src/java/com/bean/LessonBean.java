@@ -91,4 +91,23 @@ public class LessonBean {
         if(to >= size) to = size;
         return lessons.subList(from, to);
     }
+    
+    public List<Lesson> getAllLessons() throws Exception {
+        List<Lesson> lessons = new ArrayList<>();
+        if(user == null) {
+            lessons = Lesson.getListLesson(-1, null, -1, 3);
+        }
+        else if(user.isAdmin()) {
+            lessons = Lesson.getListLesson(-1, null, -1, -1);
+        }
+        else {
+            List<Lesson> l1 = Lesson.getListLesson(-1, null, -1, 3);
+            List<Lesson> l2 = Lesson.getListLesson(-1, null, -1, 2);
+            List<Lesson> l3 = Lesson.getListLesson(-1, null, user.getId(), 1);
+            lessons.addAll(l1);
+            lessons.addAll(l2);
+            lessons.addAll(l3);
+        }
+        return lessons;
+    }
 }
