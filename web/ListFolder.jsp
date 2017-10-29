@@ -42,7 +42,7 @@
                 <tr>
                     <td>${l.name}</td>
                     <td>${l.sharefolder}</td>
-              
+                    <td>${l.author}</td>
                 </tr>
             </c:forEach>
         </table>
