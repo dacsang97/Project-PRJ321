@@ -22,7 +22,7 @@ public class Folder {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     private int fid, uid, sharefolder;
-    String name;
+    private String name;
     User author;
 
     public Folder() {
@@ -150,6 +150,12 @@ public class Folder {
             return false;
         }
 
+    }
+    
+     public String getAuthor() throws Exception{
+        author = User.getUser(uid);
+        name = author.getUsername();
+        return name;
     }
 
     public static List<Folder> getListFolder(String name, int uid, int sharefolder) throws Exception {
