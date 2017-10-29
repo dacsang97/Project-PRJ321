@@ -18,14 +18,12 @@ import java.util.List;
  */
 public class Folder {
 
-    public static void addAll(List<Folder> f1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public static void addAll(List<Folder> f1) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
     private int fid, uid, sharefolder;
     private String name;
-    
-      User author;
- 
+    User author;
 
     public Folder() {
     }
@@ -73,6 +71,28 @@ public class Folder {
         this.uid = uid;
         this.name = name;
         this.sharefolder = sharefolder;
+    }
+    
+     public String getAuthor() throws Exception{
+        author = User.getUser(uid);
+        name = author.getUsername();
+        return name;
+   
+        
+     }
+     
+     
+    public String getTypeShare(){
+        switch(sharefolder){
+            case 1:
+                return "Chỉ mình tôi";
+            case 2:
+                return "Thành viên";
+            case 3:
+                return "Công khai";
+            default:
+                return null;
+        }
     }
 
     public static int getIdFolder(int fid) throws Exception {
@@ -204,10 +224,16 @@ public class Folder {
 
     public static boolean updateFolder(int fid, String name, int sharefolder) throws Exception {
         String query = "update Folders set ";
+        int k = 0;
         if (name != null) {
             query += "name = '" + name + "'";
+          k++;  
+        }
+        if(sharefolder != 1){
+            if(k > 0)
             query += ",";
             query += "sharefolder = '" + sharefolder + "'";
+            k++;
         }
         query += " where fid = " + fid;
         int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
@@ -216,5 +242,11 @@ public class Folder {
         } else {
             return false;
         }
+    }
+    
+     
+    @Override
+    public String toString() {
+        return fid + " " + uid + " " + name + " " + sharefolder;
     }
 }
