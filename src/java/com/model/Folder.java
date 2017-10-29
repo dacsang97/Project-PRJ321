@@ -195,10 +195,16 @@ public class Folder {
 
     public static boolean updateFolder(int fid, String name, int sharefolder) throws Exception {
         String query = "update Folders set ";
+        int k = 0;
         if (name != null) {
             query += "name = '" + name + "'";
+          k++;  
+        }
+        if(sharefolder != 1){
+            if(k > 0)
             query += ",";
             query += "sharefolder = '" + sharefolder + "'";
+            k++;
         }
         query += " where fid = " + fid;
         int row = new DBContext().getConnection().prepareStatement(query).executeUpdate();
