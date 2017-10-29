@@ -152,12 +152,6 @@ public class Folder {
 
     }
     
-     public String getAuthor() throws Exception{
-        author = User.getUser(uid);
-        name = author.getUsername();
-        return name;
-    }
-
     public static List<Folder> getListFolder(String name, int uid, int sharefolder) throws Exception {
         List<Folder> f = new ArrayList<>();
         String query = "select * from Folders";

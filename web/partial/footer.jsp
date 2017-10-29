@@ -1,6 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-</body>
-
 <!-- jQuery  -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/tether.min.js"></script><!-- Tether for Bootstrap -->
@@ -20,8 +18,3 @@
 <!-- App js -->
 <script src="assets/js/jquery.core.js"></script>
 <script src="assets/js/jquery.app.js"></script>
-
-<!-- Page specific js -->
-<script src="assets/pages/jquery.dashboard.js"></script>
-
-</html>
