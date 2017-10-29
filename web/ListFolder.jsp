@@ -3,7 +3,9 @@
     Created on : Oct 24, 2017, 9:32:42 PM
     Author     : TuanManh
 --%>
-
+<%@page import="com.model.User"%>
+<%@page import="com.model.Quiz"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.model.Folder"%>
 <%@page import="java.util.List"%>
 <%@page import="com.model.User"%>
@@ -26,6 +28,7 @@
         </form>
             
         <jsp:useBean id="folder" class="com.bean.ListFolderBean" scope="request"/>
+        <jsp:useBean id="user" class="com.bean.UserBean" scope="request"/>
         <jsp:setProperty name="folder" property="user" value="${sessionScope.user}"/>
         <jsp:setProperty name="folder" property="pageSize" param="txtSize"/>
         <jsp:setProperty name="folder" property="page" param="page"/>
@@ -34,11 +37,15 @@
             <tr>
                 <th>Name</th>
                 <th>ShareFolder</th>
+                <th>Author</th>
             </tr>
             <c:forEach var="l" items="${folder.listfolder}">
                 <tr>
                     <td>${l.name}</td>
                     <td>${l.sharefolder}</td>
+                    <td>${l.author}</td>
+                    
+              
                 </tr>
             </c:forEach>
         </table>
