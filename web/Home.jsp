@@ -18,33 +18,33 @@
                     <div class="card-box">
                         <div class="row">
                             <div class="col-md-4 align-self-center">
-                            <ul class="list-group">
-                                <li class="list-group-item description">PRJ321</li>
-                                <li class="list-group-item description">NWC202</li>
-                                <li class="list-group-item description">SWE102</li>
-                                <li class="list-group-item description">Toán học</li>
-                                <li class="list-group-item description">Tiếng Anh</li>
-                                <li class="list-group-item description">Tiếng Nhật</li>
-                                <li class="list-group-item description">Tiếng Anh</li>
-                                <li class="list-group-item description">Tiếng Nhật</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-8">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
-                                </ol>
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active">
-                                        <img class="d-block d-block img-fluid" src="assets/img/slider_1.jpg" alt="First slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block d-block img-fluid" src="assets/img/slider_2.jpg" alt="Second slide">
+                                <ul class="list-group">
+                                    <li class="list-group-item description">PRJ321</li>
+                                    <li class="list-group-item description">NWC202</li>
+                                    <li class="list-group-item description">SWE102</li>
+                                    <li class="list-group-item description">Toán học</li>
+                                    <li class="list-group-item description">Tiếng Anh</li>
+                                    <li class="list-group-item description">Tiếng Nhật</li>
+                                    <li class="list-group-item description">Tiếng Anh</li>
+                                    <li class="list-group-item description">Tiếng Nhật</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                                    </ol>
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="carousel-item active">
+                                            <img class="d-block d-block img-fluid" src="assets/img/slider_1.jpg" alt="First slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img class="d-block d-block img-fluid" src="assets/img/slider_2.jpg" alt="Second slide">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -127,5 +127,5 @@
             </div>
         </div>
 
-
+    <%@include file="partial/footerText.jsp" %>
     <%@include file="partial/footer.jsp" %>

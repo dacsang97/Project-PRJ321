@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : Lesson
     Created on : Oct 23, 2017, 10:01:08 PM
@@ -17,17 +18,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            try {
-                int lid = Integer.parseInt(request.getParameter("lid"));
-                System.out.println(lid);
-                ArrayList<Quiz> quizs = Quiz.getLessonQuiz(lid);
-                request.setAttribute("quizs", quizs);
-                int uid = Lesson.getLesson(lid).getUid();
-                User u = User.getUser(uid);
-                out.println(u.getUsername());
-                out.println(quizs.size());
-        %>
+        
         <p>${user.id}
         <table>
             <tr>
@@ -41,11 +32,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <%
-            } catch (NumberFormatException e) {
-                System.out.println(e);
-            }
-            
-        %>
     </body>
 </html>
+

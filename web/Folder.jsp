@@ -38,11 +38,13 @@
             <tr>
                 <th>Tên</th>
                 <th>Trạng thái</th>
+                <th>Tác giả</th>
             </tr>
             <c:forEach var="d" items="${folder.lesson}">
                     <tr>
                         <td>${d.title}</td>
                         <td>${d.typeShare}</td>
+                        <td>${d.author}</td>
                     </tr>
             </c:forEach>
         </table>

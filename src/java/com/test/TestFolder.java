@@ -64,6 +64,10 @@ public class TestFolder extends TestCase {
         assertEquals(1, Folder.getListFolder("uzi", 2, -1).size());
     }
     
+     public void testUpdateFolder() throws Exception {
+        assertEquals(true, Folder.updateFolder(21,"Ryu", 2));
+    }
+    
     
     public static void main(String[] args) {
         junit.textui.TestRunner.run(new TestSuite(TestFolder.class));

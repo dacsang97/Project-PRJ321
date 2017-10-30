@@ -5,11 +5,28 @@
  */
 package com.bean;
 
+import com.model.Quiz;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author USER
  */
 public class QuizBean {
     private int lid;
+
+    public int getLid() {
+        return lid;
+    }
+
+    public void setLid(int lid) {
+        this.lid = lid;
+    }
     
+    
+    public List<Quiz> getQuizs() throws Exception {
+        List<Quiz> quizs = Quiz.getLessonQuiz(lid);
+        return quizs;
+    }
 }
