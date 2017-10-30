@@ -18,14 +18,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <p>${user.id}
+        <jsp:useBean id="quizs" class="com.bean.QuizBean" scope="request"/>
+        <jsp:setProperty name="quizs" property="lid" value="${param.lid}"/>
+        <p>${user.username}
         <table>
             <tr>
                 <th>Question</th>
                 <th>Answer</th>
             </tr>
-            <c:forEach var="d" items="${quizs}">
+            <c:forEach var="d" items="${quizs.quizs}">
                 <tr>
                     <td>${d.question}</td>
                     <td>${d.answer}</td>
