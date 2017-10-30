@@ -37,8 +37,8 @@
                     <td>${l.title}</td>
                     <td>${l.typeShare}</td>
                     <td>${l.userName}</td>
-                    <td><a href="EditLesson.jsp?lid=${l.lid}">Chỉnh sửa</a></td>
-                    td><a href="AdminDeleteLessonAction?lid=${l.lid}">Xóa</a></td>
+                    <td><a href="../EditLesson.jsp?lid=${l.lid}">Chỉnh sửa</a></td>
+                    <td><a href="AdminDeleteLessonAction?lid=${l.lid}">Xóa</a></td>
                 </tr>
             </c:forEach>
         </table>

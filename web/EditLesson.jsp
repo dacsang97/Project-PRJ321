@@ -28,6 +28,7 @@
                     <option value="2" <c:if test="${lesson.share == 2}">selected</c:if>>Thành viên</option>
                     <option value="3" <c:if test="${lesson.share == 3}">selected</c:if>>Công khai</option>
                 </select>
+            <p><input type="submit" value="OK" />
         </form>    
         <%
             } catch(Exception e) {

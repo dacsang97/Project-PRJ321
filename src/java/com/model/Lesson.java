@@ -137,9 +137,13 @@ public class Lesson {
     }
     
     public static boolean deleteLesson(int lid) throws Exception{
-        String query = "delete from Lessons where lid = " + lid;
-        int row = new DBContext().getConnection().createStatement().executeUpdate(query);
-        if(row > 0) return true;
+        String query1 = "delete from Quiz where lid = " + lid;
+        String query2 = "delete from Folders_PK_Lessons where lid = " + lid;
+        String query3 = "delete from Lessons where lid = " + lid;
+        int row1 = new DBContext().getConnection().createStatement().executeUpdate(query1);
+        int row2 = new DBContext().getConnection().createStatement().executeUpdate(query2);
+        int row3 = new DBContext().getConnection().createStatement().executeUpdate(query3);
+        if(row3 > 0) return true;
         else return false;
     }
     //name == null, get all lesson where uid == uid and share == share
