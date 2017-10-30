@@ -4,6 +4,8 @@
     Author     : USER
 --%>
 
+<%@page import="com.model.User"%>
+<%@page import="com.model.Lesson"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,8 +23,12 @@
                 System.out.println(lid);
                 ArrayList<Quiz> quizs = Quiz.getLessonQuiz(lid);
                 request.setAttribute("quizs", quizs);
+                int uid = Lesson.getLesson(lid).getUid();
+                User u = User.getUser(uid);
+                out.println(u.getUsername());
                 out.println(quizs.size());
         %>
+        <p>${user.id}
         <table>
             <tr>
                 <th>Question</th>

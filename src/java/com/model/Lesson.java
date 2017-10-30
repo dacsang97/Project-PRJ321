@@ -76,7 +76,10 @@ public class Lesson {
         }
     }
     
-    
+    public String getUserName() throws Exception{
+        User u = User.getUser(uid);
+        return u.getUsername();
+    }
 
     public static boolean createLesson(String title, int uid, int share) throws Exception{
         String query = "insert into Lessons values(?, ?, ?)";
