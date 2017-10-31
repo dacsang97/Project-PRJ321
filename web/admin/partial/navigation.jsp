@@ -10,7 +10,7 @@
     </div>
 
 
-    <nav class="navbar navbar-custom">
+    <nav class="navbar navbar-custom" id="menu-extras">
         <ul class="nav navbar-nav">
             <li class="nav-item">
                 <button class="button-menu-mobile open-left waves-light waves-effect">
@@ -23,7 +23,7 @@
             <li class="nav-item dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/users/avatar-1.jpg" alt="${sessionScope.user.username}" class="img-circle">
+                    <avatar username="${sessionScope.user.username}" :size="36"></avatar>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
                     <!-- item-->

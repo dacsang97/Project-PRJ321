@@ -18,7 +18,7 @@
         <!-- App CSS -->
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-        
+
         <!-- DataTables -->
         <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -35,4 +35,3 @@
         <script src="assets/js/modernizr.min.js"></script>
     </head>
     <body class="sidebar-collapse">
-        
