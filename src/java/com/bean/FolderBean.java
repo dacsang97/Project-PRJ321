@@ -114,8 +114,9 @@ public class FolderBean {
         list.addAll(type3);
         return list;
     }
-
+    
     public List<Lesson> getLesson() throws Exception {
+        list.clear();
         if (page == 0) {
             page = 1;
         }
@@ -132,7 +133,6 @@ public class FolderBean {
         }
         User u = User.getUser(uid);
         if (u.isAdmin()) {
-            list.clear();
             list.addAll(Lesson.getListLesson(fid, null, -1, -1));
             list1 = addList(list, list1, from, to);
             return list1;

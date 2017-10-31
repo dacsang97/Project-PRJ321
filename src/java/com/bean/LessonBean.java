@@ -86,6 +86,12 @@ public class LessonBean {
         return lessons;
     }
     
+    public List<Lesson> getMyLesson() throws Exception {
+        List<Lesson> lessons = new ArrayList<>();
+        lessons = Lesson.getListLesson(-1, null, user.getId(), -1);
+        return lessons;
+    }
+    
     public List<Lesson> getLessons() throws Exception{
         if(page == 0) page = 1;
         if(pageSize == 0) pageSize = 5;

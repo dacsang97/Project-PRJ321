@@ -1,3 +1,4 @@
+
 <%@page import="com.model.User"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,14 +9,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <% request.setAttribute("title", "Danh sách bài học");
+    <% request.setAttribute("title", "Danh sách chuyên mục");
     %>
     <%@include file="./partial/header.jsp" %>
     <%@include file="./partial/navigation.jsp" %>
 
 
-    <jsp:useBean id="lesson" class="com.bean.LessonBean" scope="request"/>
-    <jsp:setProperty name="lesson" property="user" value="${sessionScope.user}"/>
+    <jsp:useBean id="folder" class="com.bean.ListFolderBean" scope="request"/>
+    <jsp:useBean id="user" class="com.bean.UserBean" scope="request"/>
+    <jsp:setProperty name="folder" property="user" value="${sessionScope.user}"/>
     <div class="wrapper">
         <div class="container">
 
@@ -34,17 +36,17 @@
                         </div>
 
                     </div>
-                    <h4 class="page-title">Danh sách bài học</h4>
+                    <h4 class="page-title">Chuyên mục của ${sessionScope.user.username}</h4>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                     <div class="card-box tilebox-one">
-                        <i class="zmdi zmdi-shape pull-xs-right text-muted"></i>
+                        <i class="zmdi zmdi-storage pull-xs-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">${lesson.allLessons.size()}</h2>
-                        <span class="text-muted">Bài học</span>
+                        <h2 class="m-b-20" data-plugin="counterup">${folder.myFolder.size()}</h2>
+                        <span class="text-muted">Chuyên mục</span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
@@ -59,11 +61,11 @@
                             </thead>
                             <tbody>
 
-                                <c:forEach var="l" items="${lesson.allLessons}">
+                                <c:forEach var="l" items="${folder.myFolder}">
                                     <tr>
-                                        <td><a href="./Lesson.jsp?lid=${l.lid}">${l.title}</a></td>
+                                        <td><a href="./Folder.jsp?fid=${l.fid}">${l.name}</a></td>
                                         <td>${l.typeShare}</td>
-                                        <td>${l.userName}</td>
+                                        <td>${l.author}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

@@ -71,7 +71,7 @@ public class ListFolderBean {
             return 1 + size / pageSize;
         }
     }
-    
+
     public List<Folder> getListAllFolder() throws Exception {
         List<Folder> list = new ArrayList<>();
         if (user == null) {
@@ -83,7 +83,7 @@ public class ListFolderBean {
 
             List<Folder> f1 = Folder.getListFolder(null, -1, 3);
             List<Folder> f2 = Folder.getListFolder(null, -1, 2);
-            List<Folder> f3 = Folder.getListFolder(user.getUsername(), user.getId(), 1);
+            List<Folder> f3 = Folder.getListFolder(null, user.getId(), 1);
 
             list.addAll(f1);
             list.addAll(f2);
@@ -91,6 +91,12 @@ public class ListFolderBean {
             return list;
 
         }
+        return list;
+    }
+
+    public List<Folder> getMyFolder() throws Exception {
+        List<Folder> list = new ArrayList<>();
+        list = Folder.getListFolder(null, user.getId(), -1);
         return list;
     }
 
@@ -115,7 +121,7 @@ public class ListFolderBean {
 
             List<Folder> f1 = Folder.getListFolder(null, -1, 3);
             List<Folder> f2 = Folder.getListFolder(null, -1, 2);
-            List<Folder> f3 = Folder.getListFolder(user.getUsername(), user.getId(), 1);
+            List<Folder> f3 = Folder.getListFolder(null, user.getId(), 1);
 
             list.addAll(f1);
             list.addAll(f2);
