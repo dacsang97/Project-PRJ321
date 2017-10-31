@@ -32,5 +32,13 @@
         <action name="CreateLessonAction" class="com.controller.CreateLessonAction" method="execute">
             
         </action>
+        
+        <action name="EditLessonAction" class="com.controller.EditLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
+            
+        </action>
     </package>
 </struts>

@@ -1,12 +1,9 @@
 <%-- 
-    Document   : CreateLesson
-    Created on : Oct 23, 2017, 9:36:27 PM
+    Document   : AdminCreateLesson
+    Created on : Oct 30, 2017, 3:06:08 PM
     Author     : USER
 --%>
 
-<%@page import="com.opensymphony.xwork2.ActionContext"%>
-<%@page import="java.util.Map"%>
-<%@page import="com.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

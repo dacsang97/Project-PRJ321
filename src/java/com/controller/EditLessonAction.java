@@ -6,25 +6,32 @@
 package com.controller;
 
 import com.model.Lesson;
-import com.model.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class CreateLessonAction extends ActionSupport {
+public class EditLessonAction extends ActionSupport {
     
+    private int lid;
     private String title;
-    private int  share;
+    private int share;
     Map session;
+    
+    public EditLessonAction() {
+        session = (Map) ActionContext.getContext().get("session");
+    }
 
-//    public void setSession(Map session) {
-//        this.session = session;
-//    }
+    public int getLid() {
+        return lid;
+    }
+
+    public void setLid(int lid) {
+        this.lid = lid;
+    }
 
     public String getTitle() {
         return title;
@@ -42,15 +49,9 @@ public class CreateLessonAction extends ActionSupport {
         this.share = share;
     }
     
-    public CreateLessonAction() {
-        session = (Map) ActionContext.getContext().get("session");
-    }
-    
     public String execute() throws Exception {
         session = (Map) ActionContext.getContext().get("session");
-        User u = (User) session.get("user");
-        System.out.println(u.getUsername());
-        boolean b = Lesson.createLesson(title, u.getId(), share);
+        boolean b = Lesson.updateLesson(lid, title, -1, share);
         if(b) return SUCCESS;
         else return ERROR;
     }
