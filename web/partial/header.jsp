@@ -33,12 +33,6 @@
         <![endif]-->
         <!-- Modernizr js -->
         <script src="assets/js/modernizr.min.js"></script>
-
-        <style>
-            .wrapper {
-                background: url("./assets/img/bg.png") no-repeat fixed !important;
-            }
-        </style>
     </head>
     <body class="sidebar-collapse">
         
