@@ -6,6 +6,7 @@
 package com.filter;
 
 import com.model.User;
+import com.model.Error;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -116,9 +117,10 @@ public class PermissionFilter implements Filter {
             HttpSession session = req.getSession();
             User u = (User)session.getAttribute("user");
             if(u == null || !u.isAdmin()){
-                session.setAttribute("LoginError", u);
+                Error e = new Error(403, "Bạn không có quyền truy cập trang này");
+                session.setAttribute("Error", e);
                 String contextPath = req.getContextPath();
-                //req.getServletPath();
+                rep.sendRedirect(contextPath + "/Error.jsp");
             }
 
             

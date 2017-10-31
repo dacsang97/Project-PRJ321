@@ -17,6 +17,10 @@
         <url-pattern>/EditProfile.jsp</url-pattern>
     </filter-mapping>
     <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>PermissionFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>

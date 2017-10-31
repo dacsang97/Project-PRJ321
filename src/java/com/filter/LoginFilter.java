@@ -117,7 +117,7 @@ public class LoginFilter implements Filter {
             if(u == null){
                 session.setAttribute("LoginError", "error");
                 String contextPath = req.getContextPath();
-                //req.getServletPath();
+                rep.sendRedirect(contextPath + "/Login.jsp");
             }
             
             
