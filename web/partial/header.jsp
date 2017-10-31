@@ -17,7 +17,13 @@
 
         <!-- App CSS -->
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <!-- Sweet Alert css -->
+        <link href="assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css" />
 
+        
+        <!-- Animate -->
+        <link rel="stylesheet" href="assets/css/animate.css" />
 
         <!-- DataTables -->
         <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
