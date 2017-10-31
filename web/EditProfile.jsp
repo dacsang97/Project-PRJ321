@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : EditProfile
     Created on : Oct 23, 2017, 11:17:07 PM
@@ -14,7 +15,7 @@
     </head>
     <body>
         <%
-            String s = (String) session.getAttribute("LoginError");
+        String s = (String) session.getAttribute("LoginError");
         if (s.equals("error")) {%>
         <h1>Bạn chưa đăng nhập</h1>
         <%} else {%>    

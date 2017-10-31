@@ -22,9 +22,12 @@ public class Folder {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     private int fid, uid, sharefolder;
+
     String name;
     User author;
 
+ 
+   
     public Folder() {
     }
 
@@ -82,7 +85,7 @@ public class Folder {
      }
      
      
-    public String getTypeShare(){
+    public String getTypeshare(){
         switch(sharefolder){
             case 1:
                 return "Chỉ mình tôi";
@@ -151,7 +154,7 @@ public class Folder {
         }
 
     }
-
+   
     public static List<Folder> getListFolder(String name, int uid, int sharefolder) throws Exception {
         List<Folder> f = new ArrayList<>();
         String query = "select * from Folders";
