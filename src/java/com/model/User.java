@@ -192,6 +192,34 @@ public class User {
         conn.close();
         return user;
     }
+    
+    public static void deleteUser(int uid) throws Exception{      
+        String querySelect = "select lid from Lessons where uid = "+uid;
+        List<Integer> list = new ArrayList<>();
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(querySelect).executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("lid");
+            list.add(id);
+        }
+        for (int i = 0; i < list.size(); i++) {          
+            String query4 = "delete from Quiz where lid = " + list.get(i);
+            new DBContext().getConnection().createStatement().executeUpdate(query4);
+        }   
+        for (int i = 0; i < list.size(); i++) {
+            String query3 = "delete from Folders_PK_Lessons where lid = " + list.get(i);
+            new DBContext().getConnection().createStatement().executeUpdate(query3);
+        }
+        String query1 = "delete from Lessons where uid = " + uid;
+        new DBContext().getConnection().createStatement().executeUpdate(query1);
+        String query2 = "delete from Folders where uid = " + uid;
+        new DBContext().getConnection().createStatement().executeUpdate(query2);      
+        String query = "delete from Users where uid = " + uid;
+        new DBContext().getConnection().createStatement().executeUpdate(query);
+        rs.close();
+        conn.close();
+    }
+    
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", password=" + password + ", permission=" + permission + '}';
