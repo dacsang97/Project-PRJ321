@@ -113,7 +113,8 @@
                         <ul class="submenu">
                             <li><a href="./ListLesson.jsp">Danh sách bài học</a></li>
                             <li><a href="./CreateLesson.jsp">Tạo bài học mới</a></li>
-                            <li><a href="./ListLesson.jsp">Bài học của tôi</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="./MyLesson.jsp">Bài học của tôi</a></li>
                         </ul>
                     </li>
                     <li class="has-submenu">
@@ -121,7 +122,8 @@
                         <ul class="submenu">
                             <li><a href="./ListFolder.jsp">Danh sách chuyên mục</a></li>
                             <li><a href="./CreateFolder.jsp">Tạo chuyên mục mới</a></li>
-                            <li><a href="./ListFolder.jsp">Chuyên mục của tôi</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="./MyFolder.jsp">Chuyên mục của tôi</a></li>
                         </ul>
                     </li>
 
