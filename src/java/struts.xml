@@ -18,6 +18,13 @@
             <result name="success">Profile.jsp</result>
             <result name="error">EditProfile.jsp</result>
         </action>
+        <action name="AdminEditUserAction" class="com.controller.AdminEditUserAction" method="execute">
+            <result name="success">/admin/AdminListUser.jsp</result>
+            <result name="error">/admin/AdminEditUser.jsp</result>
+        </action>
+        <action name="AdminDeleteUserAction" class="com.controller.AdminDeleteUserAction" method="execute">
+            <result name="success">/admin/AdminListUser.jsp</result>
+        </action>
         <action name="LogoutAction" class="com.controller.LoginAction" method="logout">
             <result name="success">LogoutSuccess.jsp</result>
         </action>
