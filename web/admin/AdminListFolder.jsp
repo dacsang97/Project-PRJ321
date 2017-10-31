@@ -57,7 +57,7 @@
                                 </c:url>
                               <a href="${update}">Update</a>
                         </td>
-                    <td><a href="DeleteActionFolder?fid=${l.fid}">Delete</a></td>
+                    <td><a href="DeleteFolderAction?fid=${l.fid}">Delete</a></td>
                
                     
                 </tr>
