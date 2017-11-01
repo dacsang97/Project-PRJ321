@@ -51,14 +51,14 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <fieldset class="form-group">
-                                                    <label class="form-control-label" for="question">Câu hỏi</label>
-                                                    <textarea class="form-control" id="question" rows="3" v-model="quizzes[index].question"></textarea>
+                                                    <label class="form-control-label label-quizless" for="question">Câu hỏi</label>
+                                                    <textarea class="form-control-quizless" id="question" v-model="quizzes[index].question"></textarea>
                                                 </fieldset>
                                             </div>
                                             <div class="col-md-6">
                                                 <fieldset class="form-group">
-                                                    <label class="form-control-label" for="answer">Đáp án</label>
-                                                    <textarea class="form-control" id="answer" rows="3" v-model="quizzes[index].answer"></textarea>
+                                                    <label class="form-control-label label-quizless" for="answer">Đáp án</label>
+                                                    <textarea class="form-control-quizless" id="answer" v-model="quizzes[index].answer"></textarea>
                                                 </fieldset>
                                             </div>
                                         </div>
