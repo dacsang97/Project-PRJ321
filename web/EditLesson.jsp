@@ -40,11 +40,12 @@
                     <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
                         <transition-group
                             name="add-question"
-                            enter-active-class="animated fadeIn"
-                            leave-active-class="animated bounceOutRight"
+                            enter-active-class="animated pulse"
+                            leave-active-class="animated fadeOut"
                             tag="div"
+                            mode="out-in"
                             >
-                            <div class="card-box tilebox-one" v-for="(quiz, index) in quizzes" :key="index">
+                            <div class="card-box tilebox-one" v-for="(quiz, index) in quizzes" :key="quiz">
 
                                 <div class="row">
                                     <div class="col-md-1">
