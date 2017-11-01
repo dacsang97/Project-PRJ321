@@ -51,12 +51,45 @@
             </result>
         </action>
         
+        <action name="DeleteLessonAction" class="com.controller.DeleteLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="CreateFolderAction" class="com.controller.CreateFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="EditFolderAction" class="com.controller.EditFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="DeleteFolderAction" class="com.controller.DeleteFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminCreateLessonAction" class="com.controller.AdminCreateLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminEditLessonAction" class="com.controller.AdminEditLessonAction" method="execute">
+            
+        </action>
+        
         <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
             
         </action>
         
-        <action name="DeleteLessonAction" class="com.comtroller.DeleteLessonAction" method="execute">
+        <action name="AdminCreateFolderAction" class="com.controller.AdminCreateFolderAction" method="execute">
             
         </action>
+        
+        <action name="AdminEditFolderAction" class="com.controller.AdminEditFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminDeleteFolderAction" class="com.controller.AdminDeleteFolderAction" method="execute">
+            
+        </action>
+        
     </package>
 </struts>
