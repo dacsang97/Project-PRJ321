@@ -34,6 +34,10 @@
                 <input type="submit" value="Show"/>
             </form>
             <p>
+            <form action="./AdminCreateUser.jsp">
+                <input type="submit" value="Create New User">
+            </form>              
+            <p>
             <table border="1" cellspacing="0" cellpadding="15">
                 <tr>
                     <th>ID</th>
