@@ -41,24 +41,36 @@
                             <div class="card-box tilebox-one" v-for="(quiz, index) in quizzes" :key="index">
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <fieldset class="form-group">
-                                            <label class="form-control-label" for="question">Câu hỏi</label>
-                                            <textarea class="form-control" id="question" rows="3" v-model="quizzes[index].question"></textarea>
-                                        </fieldset>
+                                    <div class="col-md-1">
+                                        <div class="counter-box">
+                                            <span class="counter-text">{{ index + 1 }}</span>
+                                            <button type="button" class="btn btn-link btn-rounded waves-effect counter-btn" @click="onRemoveQuestion(index)"> <i class="zmdi zmdi-delete"></i> </button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <fieldset class="form-group">
-                                            <label class="form-control-label" for="answer">Đáp án</label>
-                                            <textarea class="form-control" id="answer" rows="3" v-model="quizzes[index].answer"></textarea>
-                                        </fieldset>
+                                    <div class="col-md-11">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-control-label" for="question">Câu hỏi</label>
+                                                    <textarea class="form-control" id="question" rows="3" v-model="quizzes[index].question"></textarea>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset class="form-group">
+                                                    <label class="form-control-label" for="answer">Đáp án</label>
+                                                    <textarea class="form-control" id="answer" rows="3" v-model="quizzes[index].answer"></textarea>
+                                                </fieldset>
+                                            </div>
+                                        </div>
                                     </div>
+
+
                                 </div>
 
                             </div>
                         </transition-group>
-                        <div class="row">
-                            <button type="button" class="btn btn-danger" @click="onAddQuestion">Thêm câu hỏi</button>
+                        <div class="card-box tilebox-one text-center">
+                            <button type="button" class="btn btn-success-outline waves-effect waves-light" @click="onAddQuestion">Thêm câu hỏi</button>
                         </div>
                     </div>
 
