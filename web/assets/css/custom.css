@@ -1,4 +1,4 @@
-#create-lesson, #edit-lesson .box-info {
+#create-lesson, #edit-lesson, #create-folder .box-info {
     position: fixed;
     width: 21.5%;
 }
@@ -69,4 +69,28 @@
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.inner-drag {
+    min-height: 100px;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: .5;
+  background: #C8EBFB;
+}
+.list-group {
+  min-height: 20px;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i{
+  cursor: pointer;
 }
