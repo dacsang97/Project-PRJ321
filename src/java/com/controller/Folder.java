@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.model;
+package com.controller;
 
+import com.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,8 +26,6 @@ public class Folder {
     private String name;
     User author;
 
- 
-   
     public Folder() {
     }
 
@@ -84,7 +83,7 @@ public class Folder {
      }
      
      
-    public String getTypeshare(){
+    public String getTypeShare(){
         switch(sharefolder){
             case 1:
                 return "Chỉ mình tôi";
@@ -164,7 +163,7 @@ public class Folder {
         }
 
     }
-
+    
     public static List<Folder> getListFolder(String name, int uid, int sharefolder) throws Exception {
         List<Folder> f = new ArrayList<>();
         String query = "select * from Folders";

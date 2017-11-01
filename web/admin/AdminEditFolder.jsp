@@ -1,9 +1,3 @@
-<%-- 
-    Document   : AdminEditFolder
-    Created on : Nov 1, 2017, 6:00:40 PM
-    Author     : USER
---%>
-
 <%@page import="com.model.Folder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

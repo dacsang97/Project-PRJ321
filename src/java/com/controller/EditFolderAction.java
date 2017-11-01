@@ -24,7 +24,6 @@ public class EditFolderAction extends ActionSupport {
     public void setFid(int fid) {
         this.fid = fid;
     }
-
     public int getShareFolder() {
         return shareFolder;
     }
@@ -40,8 +39,7 @@ public class EditFolderAction extends ActionSupport {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
     public EditFolderAction() {
     }
     

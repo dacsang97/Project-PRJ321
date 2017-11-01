@@ -25,6 +25,10 @@
         <action name="AdminDeleteUserAction" class="com.controller.AdminDeleteUserAction" method="execute">
             <result name="success">/admin/AdminListUser.jsp</result>
         </action>
+        <action name="AdminCreateUserAction" class="com.controller.AdminCreateUserAction" method="execute">
+            <result name="success">/admin/AdminListUser.jsp</result>
+            <result name="error">/admin/AdminCreateUser.jsp</result>
+        </action>
         <action name="LogoutAction" class="com.controller.LoginAction" method="logout">
             <result name="success">Home.jsp</result>
         </action>
@@ -78,7 +82,6 @@
         <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
             
         </action>
-        
         <action name="AdminCreateFolderAction" class="com.controller.AdminCreateFolderAction" method="execute">
             
         </action>
@@ -90,6 +93,5 @@
         <action name="AdminDeleteFolderAction" class="com.controller.AdminDeleteFolderAction" method="execute">
             
         </action>
-        
     </package>
 </struts>

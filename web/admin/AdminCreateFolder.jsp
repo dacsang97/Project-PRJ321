@@ -1,9 +1,3 @@
-<%-- 
-    Document   : AdminCreateFolder
-    Created on : Nov 1, 2017, 4:57:22 PM
-    Author     : USER
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
