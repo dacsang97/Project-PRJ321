@@ -8,6 +8,7 @@ package com.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,15 +84,25 @@ public class Lesson {
         return u.getUsername();
     }
 
-    public static boolean createLesson(String title, int uid, int share) throws Exception{
+    public static void deleteLessonQuiz(int lid) throws Exception{         
+        String query = "delete from Quiz where lid = " + lid;
+        new DBContext().getConnection().createStatement().executeUpdate(query); 
+    }
+
+    
+    public static int createLesson(String title, int uid, int share) throws Exception{
         String query = "insert into Lessons values(?, ?, ?)";
-        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, title);
         ps.setInt(2, uid);
         ps.setInt(3, share);
-        int row = ps.executeUpdate();
-        if(row > 0) return true;
-        else return false;
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            return id;
+        }
+        return -1;
     }
     
     public String getAuthor() throws Exception{

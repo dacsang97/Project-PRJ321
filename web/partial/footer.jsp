@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- jQuery  -->
 <script src="assets/js/jquery.min.js"></script>
@@ -15,17 +16,14 @@
 <script src="assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
 <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
 
+<!-- Sweet Alert js -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <!-- App js -->
 <script src="assets/js/jquery.core.js"></script>
 <script src="assets/js/jquery.app.js"></script>
-<script src="https://unpkg.com/vue@2.5.2/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.2/dist/vue.js"></script>
 <script src="./assets/js/vue-avatar.min.js"></script>
-<script>
-    new Vue({
-        el: "#menu-extras",
-        components: {
-            'avatar': Avatar.Avatar
-        }
-    })
-</script>
 

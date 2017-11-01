@@ -30,18 +30,31 @@
         </action>
         
         <action name="CreateLessonAction" class="com.controller.CreateLessonAction" method="execute">
-            
+            <result name="success" type="httpheader">
+                <param name="status">200</param>
+            </result>
+            <result name="error" type="httpheader">
+                <param name="status">500</param>
+                <param name="headers.a">a custom header value</param>
+                <param name="headers.b">another custom header value</param>
+            </result>
         </action>
         
         <action name="EditLessonAction" class="com.controller.EditLessonAction" method="execute">
-            
+            <result name="success" type="httpheader">
+                <param name="status">200</param>
+            </result>
+            <result name="error" type="httpheader">
+                <param name="status">500</param>
+                <param name="headers.a">a custom header value</param>
+                <param name="headers.b">another custom header value</param>
+            </result>
         </action>
         
         <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
             
         </action>
-        
-        <action name="CreateFolderAction" class="com.controller.CreateFolderAction" method="execute">
+         <action name="CreateFolderAction" class="com.controller.CreateFolderAction" method="execute">
                 <result name="success">AdminListFolder.jsp</result>
                 <result name="error">AdminCreateFolder.jsp</result>
         </action>
@@ -54,7 +67,6 @@
          <action name="DeleteFolderAction" class="com.controller.DeleteFolderAction" method="execute">
             <result name="success">AdminListFolder.jsp</result>
             <result name="error">AdminListFolder.jsp</result>
-            
         </action>
     </package>
 </struts>

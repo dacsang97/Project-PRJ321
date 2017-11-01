@@ -1,4 +1,3 @@
-
 <%@page import="com.model.User"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,44 +8,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <% request.setAttribute("title", "Danh sách chuyên mục");
+    <% request.setAttribute("title", "Danh sách bài học");
     %>
     <%@include file="./partial/header.jsp" %>
     <%@include file="./partial/navigation.jsp" %>
 
 
-    <jsp:useBean id="folder" class="com.bean.ListFolderBean" scope="request"/>
-    <jsp:useBean id="user" class="com.bean.UserBean" scope="request"/>
-    <jsp:setProperty name="folder" property="user" value="${sessionScope.user}"/>
+    <jsp:useBean id="lesson" class="com.bean.LessonBean" scope="request"/>
+    <jsp:setProperty name="lesson" property="user" value="${sessionScope.user}"/>
     <div class="wrapper">
         <div class="container">
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="btn-group pull-right m-t-15">
-                        <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light"
-                                data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i
-                                    class="fa fa-cog"></i></span></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-
-                    </div>
-                    <h4 class="page-title">Danh sách chuyên mục</h4>
+                    <h4 class="page-title">Danh sách bài học</h4>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                     <div class="card-box tilebox-one">
-                        <i class="zmdi zmdi-storage pull-xs-right text-muted"></i>
+                        <i class="zmdi zmdi-shape pull-xs-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">${folder.listAllFolder.size()}</h2>
-                        <span class="text-muted">Chuyên mục</span>
+                        <h2 class="m-b-20" data-plugin="counterup">${lesson.allLessons.size()}</h2>
+                        <span class="text-muted">Bài học</span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
@@ -61,11 +46,11 @@
                             </thead>
                             <tbody>
 
-                                <c:forEach var="l" items="${folder.listAllFolder}">
+                                <c:forEach var="l" items="${lesson.allLessons}">
                                     <tr>
-                                        <td><a href="./Folder.jsp?fid=${l.fid}">${l.name}</a></td>
+                                        <td><a href="./Lesson.jsp?lid=${l.lid}">${l.title}</a></td>
                                         <td>${l.typeShare}</td>
-                                        <td>${l.author}</td>
+                                        <td>${l.userName}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -78,4 +63,12 @@
 
     <%@include file="partial/footerText.jsp" %>
     <%@include file="partial/footer.jsp" %>
+    <script>
+        new Vue({
+            el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
     <%@include file="partial/datatable.jsp" %>
