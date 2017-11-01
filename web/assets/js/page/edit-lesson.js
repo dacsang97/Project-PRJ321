@@ -12,6 +12,12 @@ new Vue({
       quizCount: quizzes.length
     };
   },
+  created() {
+    this.quizzes = this.quizzes.map(item => ({
+      ...item,
+      key: faker.name.findName()
+    }));
+  },
   updated() {
     if (this.quizzes.length > this.quizCount) {
       window.scrollTo(0, document.body.scrollHeight);
@@ -46,11 +52,18 @@ new Vue({
       }
     },
     onAddQuestion() {
-      this.quizzes.splice(this.quizzes.length, 0, { question: "", answer: "" });
+      this.quizzes.splice(this.quizzes.length, 0, {
+        question: "",
+        answer: "",
+        key: faker.name.findName()
+      });
       //   this.quizzes.push({ question: "", answer: "" });
     },
     onRemoveQuestion(index) {
       this.quizzes.splice(index, 1);
+    },
+    randomKey(key) {
+      return faker.name.findName();
     }
   }
 });

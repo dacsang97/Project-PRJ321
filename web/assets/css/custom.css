@@ -1,4 +1,4 @@
-#create-lesson .box-info {
+#create-lesson, #edit-lesson .box-info {
     position: fixed;
     width: 21.5%;
 }

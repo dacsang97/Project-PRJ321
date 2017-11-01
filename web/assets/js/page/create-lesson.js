@@ -15,6 +15,12 @@ new Vue({
       quizCount: 3
     };
   },
+  created() {
+    this.quizzes = this.quizzes.map(item => ({
+      ...item,
+      key: faker.name.findName()
+    }));
+  },
   updated() {
     if (this.quizzes.length > this.quizCount) {
       window.scrollTo(0, document.body.scrollHeight);
@@ -48,7 +54,11 @@ new Vue({
       }
     },
     onAddQuestion() {
-      this.quizzes.push({ question: "", answer: "" });
+      this.quizzes.push({
+        question: "",
+        answer: "",
+        key: faker.name.findName()
+      });
     },
     onRemoveQuestion(index) {
       this.quizzes.splice(index, 1);
