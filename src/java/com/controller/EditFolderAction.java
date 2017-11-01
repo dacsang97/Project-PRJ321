@@ -6,21 +6,16 @@
 package com.controller;
 
 import com.model.Folder;
-import com.model.User;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Map;
 
 /**
  *
- * @author TuanManh
+ * @author USER
  */
-public class EditFolderAction extends ActionSupport{
-    private int fid,sharefolder;
+public class EditFolderAction extends ActionSupport {
+    
+    private int fid, shareFolder;
     private String name;
-    Map session;
-    public EditFolderAction() {
-    }
 
     public int getFid() {
         return fid;
@@ -29,13 +24,12 @@ public class EditFolderAction extends ActionSupport{
     public void setFid(int fid) {
         this.fid = fid;
     }
-
-    public int getSharefolder() {
-        return sharefolder;
+    public int getShareFolder() {
+        return shareFolder;
     }
 
-    public void setSharefolder(int sharefolder) {
-        this.sharefolder = sharefolder;
+    public void setShareFolder(int shareFolder) {
+        this.shareFolder = shareFolder;
     }
 
     public String getName() {
@@ -46,22 +40,13 @@ public class EditFolderAction extends ActionSupport{
         this.name = name;
     }
 
-    public Map getSession() {
-        return session;
+    public EditFolderAction() {
     }
-
-    public void setSession(Map session) {
-        this.session = session;
-    }
-    
     
     public String execute() throws Exception {
-         session = (Map) ActionContext.getContext().get("session");
-         boolean update = Folder.updateFolder(fid, name, sharefolder);
-          if(update == true) {          
-            return SUCCESS;
-        } 
-          return ERROR;
+        boolean b = Folder.updateFolder(fid, name, shareFolder);
+        if(b) return SUCCESS;
+        else return ERROR;
     }
     
 }

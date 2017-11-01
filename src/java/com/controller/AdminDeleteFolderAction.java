@@ -6,21 +6,18 @@
 package com.controller;
 
 import com.model.Folder;
-import com.model.User;
 import static com.opensymphony.xwork2.Action.ERROR;
 import static com.opensymphony.xwork2.Action.SUCCESS;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Map;
 
 /**
  *
- * @author TuanManh
+ * @author USER
  */
-public class DeleteFolderAction extends ActionSupport {
-
+public class AdminDeleteFolderAction extends ActionSupport {
+    
     private int fid;
-    Map session;
+
     public int getFid() {
         return fid;
     }
@@ -28,7 +25,8 @@ public class DeleteFolderAction extends ActionSupport {
     public void setFid(int fid) {
         this.fid = fid;
     }
-    public DeleteFolderAction() {
+    
+    public AdminDeleteFolderAction() {
     }
     
     public String execute() throws Exception {
@@ -36,4 +34,5 @@ public class DeleteFolderAction extends ActionSupport {
         if(b) return SUCCESS;
         else return ERROR;
     }
+    
 }

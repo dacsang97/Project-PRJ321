@@ -1,3 +1,9 @@
+<%-- 
+    Document   : CreateFolder
+    Created on : Nov 1, 2017, 4:58:27 PM
+    Author     : USER
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="AdminCreateFolderAction" method="POST">
+        <form action="CreateFolderAction" method="POST">
             <p>Tên<input type="text" name="name" value="" />
             <p>Trạng thái<select name="shareFolder">
                 <option value="1">Chỉ mình tôi</option>

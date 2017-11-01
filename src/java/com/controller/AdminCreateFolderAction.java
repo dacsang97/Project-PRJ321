@@ -12,15 +12,15 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author TuanManh
+ * @author USER
  */
-public class CreateFolderAction extends ActionSupport{
+public class AdminCreateFolderAction extends ActionSupport {
+    
     private String name;
-    private int sharefolder;
+    private int shareFolder;
     Map session;
 
     public String getName() {
@@ -31,12 +31,12 @@ public class CreateFolderAction extends ActionSupport{
         this.name = name;
     }
 
-    public int getSharefolder() {
-        return sharefolder;
+    public int getShareFolder() {
+        return shareFolder;
     }
 
-    public void setSharefolder(int sharefolder) {
-        this.sharefolder = sharefolder;
+    public void setShareFolder(int shareFolder) {
+        this.shareFolder = shareFolder;
     }
 
     public Map getSession() {
@@ -47,7 +47,7 @@ public class CreateFolderAction extends ActionSupport{
         this.session = session;
     }
     
-    public CreateFolderAction() {
+    public AdminCreateFolderAction() {
         session = (Map) ActionContext.getContext().get("session");
     }
     
@@ -58,4 +58,5 @@ public class CreateFolderAction extends ActionSupport{
         if(b) return SUCCESS;
         else return ERROR;
     }
+    
 }

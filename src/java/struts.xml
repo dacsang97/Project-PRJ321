@@ -55,22 +55,43 @@
             </result>
         </action>
         
-        <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
+        <action name="DeleteLessonAction" class="com.controller.DeleteLessonAction" method="execute">
             
         </action>
-         <action name="CreateFolderAction" class="com.controller.CreateFolderAction" method="execute">
-                <result name="success">AdminListFolder.jsp</result>
-                <result name="error">AdminCreateFolder.jsp</result>
+        
+        <action name="CreateFolderAction" class="com.controller.CreateFolderAction" method="execute">
+            
         </action>
         
         <action name="EditFolderAction" class="com.controller.EditFolderAction" method="execute">
-            <result name="success">AdminListFolder.jsp</result>
-            <result name="error">AdminEditFolder.jsp</result>
+            
         </action>
         
-         <action name="DeleteFolderAction" class="com.controller.DeleteFolderAction" method="execute">
-            <result name="success">AdminListFolder.jsp</result>
-            <result name="error">AdminListFolder.jsp</result>
+        <action name="DeleteFolderAction" class="com.controller.DeleteFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminCreateLessonAction" class="com.controller.AdminCreateLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminEditLessonAction" class="com.controller.AdminEditLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
+            
+        </action>
+        <action name="AdminCreateFolderAction" class="com.controller.AdminCreateFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminEditFolderAction" class="com.controller.AdminEditFolderAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminDeleteFolderAction" class="com.controller.AdminDeleteFolderAction" method="execute">
+            
         </action>
     </package>
 </struts>
