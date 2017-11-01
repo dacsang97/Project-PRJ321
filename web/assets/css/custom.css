@@ -2,3 +2,33 @@
     position: fixed;
     width: 21.5%;
 }
+
+.counter-box {
+    line-height: 120px;
+    text-align: center;
+}
+
+.counter-box .counter-text {
+    font-size: 32px;
+    color: #97a5aa;
+    font-weight: 700;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.counter-box:hover .counter-text {
+    opacity: 0;
+}
+
+.counter-box .counter-btn {
+    opacity: 0;
+    transition: all 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.counter-box:hover .counter-btn {
+    opacity: 1;
+}

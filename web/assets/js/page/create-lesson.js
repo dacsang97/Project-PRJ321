@@ -50,6 +50,9 @@ new Vue({
     },
     onAddQuestion() {
       this.quizzes.push({ question: "", answer: "" });
+    },
+    onRemoveQuestion(index) {
+      this.quizzes.splice(index, 1);
     }
   }
 });
