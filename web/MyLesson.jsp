@@ -63,4 +63,12 @@
 
     <%@include file="partial/footerText.jsp" %>
     <%@include file="partial/footer.jsp" %>
+    <script>
+        new Vue({
+            el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
     <%@include file="partial/datatable.jsp" %>

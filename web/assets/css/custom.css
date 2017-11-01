@@ -4,7 +4,7 @@
 }
 
 .counter-box {
-    line-height: 120px;
+    line-height: 90px;
     text-align: center;
 }
 
@@ -31,4 +31,42 @@
 
 .counter-box:hover .counter-btn {
     opacity: 1;
+}
+
+.form-control-quizless {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid #97a5aa;
+    font-size: 18px;
+    display: block;
+    outline: none;
+    overflow: hidden;
+    resize: vertical;
+    transition: all 0.1s !important;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+
+.form-control-quizless:focus {
+    border-bottom: 3px solid #455358;
+}
+
+.label-quizless {
+    color: #97a5aa;
+    font-size: 18px;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }

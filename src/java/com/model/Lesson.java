@@ -84,6 +84,12 @@ public class Lesson {
         return u.getUsername();
     }
 
+    public static void deleteLessonQuiz(int lid) throws Exception{         
+        String query = "delete from Quiz where lid = " + lid;
+        new DBContext().getConnection().createStatement().executeUpdate(query); 
+    }
+
+    
     public static int createLesson(String title, int uid, int share) throws Exception{
         String query = "insert into Lessons values(?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
