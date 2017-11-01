@@ -84,7 +84,7 @@ public class Folder {
      }
      
      
-    public String getTypeshare(){
+    public String getTypeShare(){
         switch(sharefolder){
             case 1:
                 return "Chỉ mình tôi";
