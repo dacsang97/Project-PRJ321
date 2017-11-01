@@ -63,10 +63,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
                         </transition-group>
                         <div class="card-box tilebox-one text-center">
@@ -82,4 +79,12 @@
 
     <%@include file="partial/footerText.jsp" %>
     <%@include file="partial/footer.jsp" %>
+    <script>
+        new Vue({
+            el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
     <script src="./assets/js/page/create-lesson.js"></script>

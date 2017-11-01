@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- jQuery  -->
 <script src="assets/js/jquery.min.js"></script>
@@ -25,12 +26,4 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@2.5.2/dist/vue.js"></script>
 <script src="./assets/js/vue-avatar.min.js"></script>
-<script>
-    new Vue({
-        el: "#menu-extras",
-        components: {
-            'avatar': Avatar.Avatar
-        }
-    })
-</script>
 

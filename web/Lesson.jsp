@@ -19,19 +19,6 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="btn-group pull-right m-t-15">
-                        <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light"
-                                data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i
-                                    class="fa fa-cog"></i></span></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-
-                    </div>
                     <h4 class="page-title">Bài học: ${quizs.name}</h4>
                 </div>
             </div>
@@ -39,10 +26,42 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                     <div class="card-box tilebox-one">
+                        <div class="row">
+                            <div class="col-md-12" id="box-author">
+                                <i class="zmdi zmdi-account-box pull-xs-right text-muted"></i>
+                                <h6 class="text-muted text-uppercase m-b-20">Tác giả</h6>
+                                <avatar username="${quizs.author}" :size="50"></avatar>
+                                <h4 class="m-t-10">${quizs.author}</h4>
+                            </div>
+                        </div>
+                        <hr>
                         <i class="zmdi zmdi-labels pull-xs-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
                         <h2 class="m-b-20" data-plugin="counterup">${quizs.quizs.size()}</h2>
                         <span class="text-muted">Câu hỏi</span>
+                        
+                        <% 
+                            User u = (User) session.getAttribute("user");
+                            int lid = Integer.parseInt(request.getParameter("lid"));
+                            Lesson l = Lesson.getLesson(lid);
+                            if (u!=null && (u.isAdmin() || (l.getUid() == u.getId()))) {
+                        %>
+                        <hr>
+                        <div class="flex-row">
+                            <div class="col-md-12 text-xs-center">
+                                <div class="btn-group m-b-20 ">
+                                    <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditLesson.jsp?lid=${param.lid}">
+                                    <span class="btn-label"><i class="zmdi zmdi-edit"></i>
+                                    </span>Chỉnh sửa</a>
+                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteLesson.jsp?lid=${param.lid}">
+                                    <span class="btn-label"><i class="zmdi zmdi-delete"></i>
+                                    </span>Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% 
+                            }
+                        %>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
@@ -55,7 +74,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <c:forEach var="d" items="${quizs.quizs}">
                                     <tr>
                                         <td>${d.question}</td>
@@ -72,5 +90,21 @@
 
     <%@include file="partial/footerText.jsp" %>
     <%@include file="partial/footer.jsp" %>
+    <script>
+        new Vue({
+            el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
+    <script>
+        new Vue({
+            el: "#box-author",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
     <%@include file="partial/datatable.jsp" %>
 
