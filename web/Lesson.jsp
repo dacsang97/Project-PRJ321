@@ -1,45 +1,110 @@
-<%-- 
-    Document   : Lesson
-    Created on : Oct 23, 2017, 10:01:08 PM
-    Author     : USER
---%>
-
+<%@page import="com.model.User"%>
+<%@page import="com.model.Lesson"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <%
-            try {
-                int lid = Integer.parseInt(request.getParameter("lid"));
-                System.out.println(lid);
-                ArrayList<Quiz> quizs = Quiz.getLessonQuiz(lid);
-                request.setAttribute("quizs", quizs);
-                out.println(quizs.size());
-        %>
-        <table>
-            <tr>
-                <th>Question</th>
-                <th>Answer</th>
-            </tr>
-            <c:forEach var="d" items="${quizs}">
-                <tr>
-                    <td>${d.question}</td>
-                    <td>${d.answer}</td>
-                </tr>
-            </c:forEach>
-        </table>
-        <%
-            } catch (NumberFormatException e) {
-                System.out.println(e);
+<html lang="en">
+    <% request.setAttribute("title", "Danh sách câu hỏi");
+    %>
+    <%@include file="./partial/header.jsp" %>
+    <%@include file="./partial/navigation.jsp" %>
+
+
+    <jsp:useBean id="quizs" class="com.bean.QuizBean" scope="request"/>
+    <jsp:setProperty name="quizs" property="lid" value="${param.lid}"/>
+    <div class="wrapper">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="page-title">Bài học: ${quizs.name}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card-box tilebox-one">
+                        <div class="row">
+                            <div class="col-md-12" id="box-author">
+                                <i class="zmdi zmdi-account-box pull-xs-right text-muted"></i>
+                                <h6 class="text-muted text-uppercase m-b-20">Tác giả</h6>
+                                <avatar username="${quizs.author}" :size="50"></avatar>
+                                <h4 class="m-t-10">${quizs.author}</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <i class="zmdi zmdi-labels pull-xs-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
+                        <h2 class="m-b-20" data-plugin="counterup">${quizs.quizs.size()}</h2>
+                        <span class="text-muted">Câu hỏi</span>
+                        
+                        <% 
+                            User u = (User) session.getAttribute("user");
+                            int lid = Integer.parseInt(request.getParameter("lid"));
+                            Lesson l = Lesson.getLesson(lid);
+                            if (u!=null && (u.isAdmin() || (l.getUid() == u.getId()))) {
+                        %>
+                        <hr>
+                        <div class="flex-row">
+                            <div class="col-md-12 text-xs-center">
+                                <div class="btn-group m-b-20 ">
+                                    <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditLesson.jsp?lid=${param.lid}">
+                                    <span class="btn-label"><i class="zmdi zmdi-edit"></i>
+                                    </span>Chỉnh sửa</a>
+                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteLesson.jsp?lid=${param.lid}">
+                                    <span class="btn-label"><i class="zmdi zmdi-delete"></i>
+                                    </span>Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% 
+                            }
+                        %>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
+                    <div class="card-box table-responsive">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Câu hỏi</th>
+                                    <th>Trả lời</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="d" items="${quizs.quizs}">
+                                    <tr>
+                                        <td>${d.question}</td>
+                                        <td>${d.answer}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%@include file="partial/footerText.jsp" %>
+    <%@include file="partial/footer.jsp" %>
+    <script>
+        new Vue({
+            el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
             }
-            
-        %>
-    </body>
-</html>
+        })
+    </script>
+    <script>
+        new Vue({
+            el: "#box-author",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
+    <%@include file="partial/datatable.jsp" %>
+

@@ -165,16 +165,13 @@ public class Quiz {
         return Quizs;
     }
     
-    public static boolean getCountQuiz(int qid) throws Exception{
+    public static int getCountQuiz() throws Exception{
         String query = "select count(*) from Quiz ";
         Connection conn = new DBContext().getConnection();
-        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-        int row = ps.executeUpdate();
-        if (row > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        return count;
     }
 
     @Override

@@ -17,6 +17,19 @@
 
         <!-- App CSS -->
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <!-- Sweet Alert css -->
+        <link href="assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css" />
+
+        
+        <!-- Animate -->
+        <link rel="stylesheet" href="assets/css/animate.css" />
+
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,12 +39,5 @@
         <![endif]-->
         <!-- Modernizr js -->
         <script src="assets/js/modernizr.min.js"></script>
-
-        <style>
-            .wrapper {
-                background: url("./assets/img/bg.png") no-repeat fixed !important;
-            }
-        </style>
     </head>
     <body class="sidebar-collapse">
-        

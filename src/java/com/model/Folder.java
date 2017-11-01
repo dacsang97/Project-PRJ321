@@ -22,8 +22,7 @@ public class Folder {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     private int fid, uid, sharefolder;
-
-    String name;
+    private String name;
     User author;
 
  
@@ -108,6 +107,17 @@ public class Folder {
         }
         return -1;
     }
+    
+    public static String getFolderName(int fid) throws Exception {
+        String query = "select * from Folders where fid = " + fid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            String name = rs.getString("name");
+            return name;
+        }
+        return "";
+    }
 
     public static Folder getFolder(int fid) throws Exception {
 
@@ -154,7 +164,7 @@ public class Folder {
         }
 
     }
-   
+
     public static List<Folder> getListFolder(String name, int uid, int sharefolder) throws Exception {
         List<Folder> f = new ArrayList<>();
         String query = "select * from Folders";
