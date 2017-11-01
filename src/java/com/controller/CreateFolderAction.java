@@ -54,7 +54,7 @@ public class CreateFolderAction extends ActionSupport{
     public String execute() throws Exception {
         session = (Map) ActionContext.getContext().get("session");
         User u = (User)session.get("user");
-        boolean b = Folder.createFolder(name, u.getId(), shareFolder);
+        boolean b = Folder.createFolder(name, u.getId(), sharefolder);
         if(b) return SUCCESS;
         else return ERROR;
     }
