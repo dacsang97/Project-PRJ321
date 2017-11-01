@@ -8,7 +8,8 @@ new Vue({
       error: false,
       quizzes: quizzes,
       quizStr: "",
-      lid: lid
+      lid: lid,
+      quizCount: quizzes.length
     };
   },
   updated() {
