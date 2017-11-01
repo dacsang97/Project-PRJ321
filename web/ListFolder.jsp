@@ -1,8 +1,4 @@
-<%-- 
-    Document   : ListFolder
-    Created on : Oct 24, 2017, 9:32:42 PM
-    Author     : TuanManh
---%>
+
 <%@page import="com.model.User"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
@@ -45,7 +41,15 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card-box tilebox-one">
+                        <i class="zmdi zmdi-storage pull-xs-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
+                        <h2 class="m-b-20" data-plugin="counterup">${folder.listAllFolder.size()}</h2>
+                        <span class="text-muted">Chuyên mục</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
                     <div class="card-box table-responsive">
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
@@ -59,8 +63,8 @@
 
                                 <c:forEach var="l" items="${folder.listAllFolder}">
                                     <tr>
-                                        <td>${l.name}</td>
-                                        <td>${l.sharefolder}</td>
+                                        <td><a href="./Folder.jsp?fid=${l.fid}">${l.name}</a></td>
+                                        <td>${l.typeShare}</td>
                                         <td>${l.author}</td>
                                     </tr>
                                 </c:forEach>

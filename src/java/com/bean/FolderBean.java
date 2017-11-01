@@ -3,6 +3,7 @@ package com.bean;
 import com.model.DBContext;
 import com.model.Lesson;
 import com.model.User;
+import com.model.Folder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ public class FolderBean {
     int page, pageSize, size;
     List<Lesson> list = new ArrayList<>();
 
-    ;
     public FolderBean() {
         page = 0;
         pageSize = 5;
@@ -84,8 +84,39 @@ public class FolderBean {
     public int getSize() {
         return size;
     }
+    
+    public String getFolderName() throws Exception {
+        return Folder.getFolderName(fid);
+    }
+    
+    public List<Lesson> getAllLesson() throws Exception {
+        list.clear();
+        if (uid <= 0) {
+            list.addAll(Lesson.getListLesson(fid, null, -1, 3));
+            return list;
+        }
+        User u = User.getUser(uid);
+        if (u.isAdmin()) {
+            list.addAll(Lesson.getListLesson(fid, null, -1, -1));
+            return list;
+        }
+        // Lesson public
+        List<Lesson> type3 = Lesson.getListLesson(fid, null, -1, 3);
 
+        // Lesson for member
+        List<Lesson> type2 = Lesson.getListLesson(fid, null, -1, 2);
+
+        // Lesson only for uid
+        List<Lesson> type1 = Lesson.getListLesson(fid, null, uid, 1);
+
+        list.addAll(type1);
+        list.addAll(type2);
+        list.addAll(type3);
+        return list;
+    }
+    
     public List<Lesson> getLesson() throws Exception {
+        list.clear();
         if (page == 0) {
             page = 1;
         }
@@ -102,7 +133,6 @@ public class FolderBean {
         }
         User u = User.getUser(uid);
         if (u.isAdmin()) {
-            list.clear();
             list.addAll(Lesson.getListLesson(fid, null, -1, -1));
             list1 = addList(list, list1, from, to);
             return list1;

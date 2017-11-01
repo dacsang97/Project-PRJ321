@@ -18,7 +18,7 @@
         <!-- App CSS -->
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-        
+
         <!-- DataTables -->
         <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -33,12 +33,5 @@
         <![endif]-->
         <!-- Modernizr js -->
         <script src="assets/js/modernizr.min.js"></script>
-
-        <style>
-            .wrapper {
-                background: url("./assets/img/bg.png") no-repeat fixed !important;
-            }
-        </style>
     </head>
     <body class="sidebar-collapse">
-        

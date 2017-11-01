@@ -105,6 +105,17 @@ public class Folder {
         }
         return -1;
     }
+    
+    public static String getFolderName(int fid) throws Exception {
+        String query = "select * from Folders where fid = " + fid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+        while (rs.next()) {
+            String name = rs.getString("name");
+            return name;
+        }
+        return "";
+    }
 
     public static Folder getFolder(int fid) throws Exception {
 

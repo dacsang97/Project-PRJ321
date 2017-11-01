@@ -26,10 +26,18 @@
             <result name="success">/admin/AdminListUser.jsp</result>
         </action>
         <action name="LogoutAction" class="com.controller.LoginAction" method="logout">
-            <result name="success">LogoutSuccess.jsp</result>
+            <result name="success">Home.jsp</result>
         </action>
         
         <action name="CreateLessonAction" class="com.controller.CreateLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="EditLessonAction" class="com.controller.EditLessonAction" method="execute">
+            
+        </action>
+        
+        <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
             
         </action>
     </package>
