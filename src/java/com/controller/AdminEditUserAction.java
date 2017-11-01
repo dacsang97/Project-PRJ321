@@ -14,9 +14,18 @@ import java.util.Map;
     
 public class AdminEditUserAction extends ActionSupport {
     String newPass, rePass;
+    int state;
     int uid;
     Map session;
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+    
     public int getUid() {
         return uid;
     }
@@ -49,6 +58,13 @@ public class AdminEditUserAction extends ActionSupport {
         if(!newPass.equals(rePass)){
             return ERROR;
         }
+        User x = User.getUser(uid);
+        if(x.isAdmin()){
+            state = 2;     
+            User.updateUser(uid, newPass, state);
+        }else{
+            User.updateUser(uid, newPass, state);
+        }      
         session = (Map) ActionContext.getContext().get("session");
         //User user = User.getUser(uid);
         boolean change = User.updatePassword(newPass, uid);    

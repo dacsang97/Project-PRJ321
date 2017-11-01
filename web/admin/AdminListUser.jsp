@@ -18,12 +18,12 @@
         <jsp:setProperty name="user" property="page" param="page"/>
         <jsp:setProperty name="user" property="pageSize" param="txtSize"/>
         <%
-            User userX = (User)session.getAttribute("user");
-            int permission = 1;
-            if(userX != null){
-                permission = userX.getPermission();
-            }        
-            request.setAttribute("permission", permission);
+            User userX = (User) session.getAttribute("user");
+            int userID = -1;
+            if (userX != null) {
+                userID = userX.getId();
+            }
+            request.setAttribute("uid", userID);
         %>
         <form action="./AdminListUser.jsp">
             Show <select name="txtSize" onchange="document.forms[0].submit()">
@@ -48,14 +48,28 @@
                     <td>
                         <c:url var="u" value="AdminEditUser.jsp">
                             <c:param name="uid" value="${q.id}"/>
-                        </c:url>
-                        <a href="${u}">${q.id != 1 && q.permission != permission?"Chỉnh sửa":""}</a>
+                        </c:url>                    
+                        <c:choose>                          
+                            <c:when test="${uid==1}">
+                                <a href="${u}">${q.id != 1?"Chỉnh sửa":""}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${u}">${q.id != 1 && q.permission!=1?"Chỉnh sửa":""}</a>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                     <td>
                         <c:url var="u" value="AdminDeleteUserAction">
                             <c:param name="uid" value="${q.id}"/>
                         </c:url>
-                        <a href="${u}">${q.id != 1 && q.permission != permission?"Xóa":""}</a>
+                        <c:choose>                          
+                            <c:when test="${uid==1}">
+                                <a href="${u}">${q.id != 1?"Xóa":""}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${u}">${q.id != 1 && q.permission!=1?"Xóa":""}</a>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>    
