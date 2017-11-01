@@ -4,6 +4,7 @@
     Author     : Luxury
 --%>
 
+<%@page import="com.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,14 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            int params = (Integer.parseInt(request.getParameter("uid")));
+            User user = (User)session.getAttribute("user");
+            if(user.getId() == 1 && params == 1){
+                response.sendRedirect("./AdminListUser.jsp");
+            }
+            
+        %>
         <form action="AdminEditUserAction" method="post">
                 Password
                 <input type="password" name="newPass" />
