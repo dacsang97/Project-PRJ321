@@ -62,7 +62,7 @@
                             <tbody>
                                 <c:forEach var="d" items="${folder.allLesson}">
                                     <tr>
-                                        <td>${d.title}</td>
+                                        <td><a href="./Lesson.jsp?lid=${d.lid}">${d.title}</a></td>
                                         <td>${d.typeShare}</td>
                                         <td>${d.author}</td>
                                     </tr>
