@@ -39,8 +39,7 @@ new Vue({
           .then(response => {
             // console.log(response);
             swal("Chúc mừng bạn vừa tạo xong bài học.").then(value => {
-              location.href = `http://localhost:8080/Project_PRJ321/Lesson.jsp?lid=${response
-                .headers.lid}`;
+              location.href = `./Lesson.jsp?lid=${response.headers.lid}`;
             });
           })
           .catch(err => {
