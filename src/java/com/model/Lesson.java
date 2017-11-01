@@ -94,6 +94,11 @@ public class Lesson {
         else return false;
     }
     
+    public void deleteLessonQuiz(int lid) throws Exception{         
+        String query = "delete from Quiz where lid = " + lid;
+        new DBContext().getConnection().createStatement().executeUpdate(query); 
+    }
+    
     public String getAuthor() throws Exception{
         author = User.getUser(uid);
         name = author.getUsername();
