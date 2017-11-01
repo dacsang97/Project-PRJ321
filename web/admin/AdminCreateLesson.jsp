@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="CreateLessonAction" method="post">
+        <form action="AdminCreateLessonAction" method="post">
             <p>Title<input type="text" name="title"/>
             <p>Share <input type="text" name="share"/>
             <p><input type="submit" value="OK"/>

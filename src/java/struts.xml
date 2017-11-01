@@ -47,5 +47,9 @@
         <action name="AdminDeleteLessonAction" class="com.controller.AdminDeleteLessonAction" method="execute">
             
         </action>
+        
+        <action name="DeleteLessonAction" class="com.comtroller.DeleteLessonAction" method="execute">
+            
+        </action>
     </package>
 </struts>
