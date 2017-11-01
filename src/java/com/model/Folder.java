@@ -108,6 +108,11 @@ public class Folder {
         return -1;
     }
     
+    public void deleteLesson(int fid) throws Exception{
+        String query = "delete from Folders_PK_Lessons where fid = " + fid;
+        new DBContext().getConnection().createStatement().executeUpdate(query); 
+    }
+    
     public static String getFolderName(int fid) throws Exception {
         String query = "select * from Folders where fid = " + fid;
         Connection conn = new DBContext().getConnection();
