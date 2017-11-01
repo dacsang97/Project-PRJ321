@@ -1,9 +1,3 @@
-<%-- 
-    Document   : AdminListFolder
-    Created on : Oct 29, 2017, 10:08:46 PM
-    Author     : TuanManh
---%>
-
 <%@page import="com.model.User"%>
 <%@page import="com.model.Quiz"%>
 <%@page import="java.util.ArrayList"%>
@@ -44,7 +38,7 @@
             <c:forEach var="l" items="${folder.listfolder}">
                 <tr>
                     <td>${l.name}</td>
-                    <td>${l.typeshare}</td>
+                    <td>${l.typeShare}</td>
                     <td>${l.author}</td>                  
 <!--                    <td><a href="AdminEditFolder.jsp?fid=${l.fid}">Update</a></td>-->
                     
