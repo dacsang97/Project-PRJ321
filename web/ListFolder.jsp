@@ -14,8 +14,8 @@
     <%@include file="./partial/navigation.jsp" %>
 
 
-    <jsp:useBean id="lesson" class="com.bean.LessonBean" scope="request"/>
-    <jsp:setProperty name="lesson" property="user" value="${sessionScope.user}"/>
+    <jsp:useBean id="folder" class="com.bean.ListFolderBean" scope="request"/>
+    <jsp:setProperty name="folder" property="user" value="${sessionScope.user}"/>
     <div class="wrapper">
         <div class="container">
 
@@ -30,8 +30,8 @@
                     <div class="card-box tilebox-one">
                         <i class="zmdi zmdi-shape pull-xs-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
-                        <h2 class="m-b-20" data-plugin="counterup">${lesson.allLessons.size()}</h2>
-                        <span class="text-muted">Bài học</span>
+                        <h2 class="m-b-20" data-plugin="counterup">${folder.listAllFolder.size()}</h2>
+                        <span class="text-muted">Chuyên mục</span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
@@ -46,11 +46,11 @@
                             </thead>
                             <tbody>
 
-                                <c:forEach var="l" items="${lesson.allLessons}">
+                                <c:forEach var="l" items="${folder.listAllFolder}">
                                     <tr>
-                                        <td><a href="./Lesson.jsp?lid=${l.lid}">${l.title}</a></td>
+                                        <td><a href="./Folder.jsp?fid=${l.fid}">${l.name}</a></td>
                                         <td>${l.typeShare}</td>
-                                        <td>${l.userName}</td>
+                                        <td>${l.author}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
