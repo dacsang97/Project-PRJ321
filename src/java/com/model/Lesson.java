@@ -195,8 +195,8 @@ public class Lesson {
         return l;
     }
     
-      public static ArrayList<Folder> getFolderLesson(int fid) throws Exception {
-        ArrayList<Folder> Folders = new ArrayList<>();
+      public static List<Lesson> getFolderLesson(int fid) throws Exception {
+        List<Lesson> l = new ArrayList<>();
         String query = "select * from Folders as fol";
         int k = 0;
         if(fid != -1){
@@ -210,15 +210,16 @@ public class Lesson {
         ResultSet rs = conn.prepareStatement(query).executeQuery();
 
         while (rs.next()) {
+            int lid = rs.getInt("lid");
+            String title = rs.getString("title");
             int uid = rs.getInt("uid");
-            String name = rs.getString("name");
-            int sharefolder = rs.getInt("sharefolder");
-            int id = rs.getInt("fid");
+            int share = rs.getInt("share");
 
-            Folders.add(new Folder(id, uid, name, sharefolder));
+            l.add(new Lesson(lid, title, uid, share));
 
         }
-        return Folders;
+        rs.close();
+        return l;
     }
     
     public static int getCountLesson(int uid) throws Exception {
