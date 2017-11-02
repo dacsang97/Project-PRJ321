@@ -1,9 +1,3 @@
-<%-- 
-    Document   : AdminCreateFolder
-    Created on : Oct 30, 2017, 10:42:48 PM
-    Author     : TuanManh
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,23 +6,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="CreateFolderAction" method="post">
-            <h1>CreateFolder</h1>
-           
-                
-                    
-            <p>Name :<input type="text" name="name" value="">
-               
-                
-               
-                   
-            <p>ShareFolder :<input type="text" name="sharefolder" value="">
-                
-                
-                 
-            <p><button type="submit" value="submit">Create</button>
-               
-             
+        <form action="AdminCreateFolderAction" method="POST">
+            <p>Tên<input type="text" name="name" value="" />
+            <p>Trạng thái<select name="shareFolder">
+                <option value="1">Chỉ mình tôi</option>
+                <option value="2">Thành viên</option>
+                <option value="3">Công khai</option>
+            </select>
+            <p><input type="submit" value="OK" />
         </form>
     </body>
 </html>

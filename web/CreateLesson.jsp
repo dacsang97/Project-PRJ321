@@ -38,7 +38,7 @@
                             mode="out-in"
                             tag="div"
                             >
-                            <div class="card-box tilebox-one" v-for="(quiz, index) in quizzes" :key="quiz">
+                            <div class="card-box tilebox-one" v-for="(quiz, index) in quizzes" :key="quiz.key">
 
                                 <div class="row">
                                     <div class="col-md-1">

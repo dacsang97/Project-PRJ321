@@ -3,6 +3,16 @@
     width: 21.5%;
 }
 
+#edit-lesson .box-info {
+    position: fixed;
+    width: 21.5%;
+}
+
+#create-folder .box-info {
+    position: fixed;
+    width: 21.5%;
+}
+
 .counter-box {
     line-height: 90px;
     text-align: center;
@@ -69,4 +79,60 @@
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.inner-drag {
+    min-height: 100px;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: .5;
+  background: #C8EBFB;
+}
+.list-group {
+  min-height: 20px;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i{
+  cursor: pointer;
+}
+
+.no-lesson {
+    background: #eee;
+    border: 3px dashed #2b3d51;
+    border-radius: 10px;
+}
+
+.no-lesson.lesson-error {
+    background: #eee;
+    border: 3px dashed #ff5d48;
+    border-radius: 10px;
+}
+
+.no-lesson::before {
+    content: "Kéo bài học vào đây";
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: #2b3d51a3;
+}
+
+.lesson-error::before {
+    content: "Vui lòng chọn bài học";
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: #ff5d48;
 }

@@ -104,7 +104,7 @@ public class Lesson {
         }
         return -1;
     }
-    
+        
     public String getAuthor() throws Exception{
         author = User.getUser(uid);
         name = author.getUsername();

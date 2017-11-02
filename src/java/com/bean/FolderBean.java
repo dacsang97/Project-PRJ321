@@ -89,6 +89,12 @@ public class FolderBean {
         return Folder.getFolderName(fid);
     }
     
+    public String getAuthor() throws Exception {
+        Folder f = Folder.getFolder(fid);
+        if (f != null) return f.getAuthor();
+        return "";
+    }
+    
     public List<Lesson> getAllLesson() throws Exception {
         list.clear();
         if (uid <= 0) {

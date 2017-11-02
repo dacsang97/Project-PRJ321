@@ -43,10 +43,42 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                     <div class="card-box tilebox-one">
-                        <i class="zmdi zmdi-shape pull-xs-right text-muted"></i>
+                        <div class="row">
+                            <div class="col-md-12" id="box-author">
+                                <i class="zmdi zmdi-account-box pull-xs-right text-muted"></i>
+                                <h6 class="text-muted text-uppercase m-b-20">Tác giả</h6>
+                                <avatar username="${folder.author}" :size="50"></avatar>
+                                <h4 class="m-t-10">${folder.author}</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <i class="zmdi zmdi-labels pull-xs-right text-muted"></i>
                         <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
                         <h2 class="m-b-20" data-plugin="counterup">${folder.allLesson.size()}</h2>
                         <span class="text-muted">Bài học</span>
+                        
+                        <% 
+                            User u = (User) session.getAttribute("user");
+                            int fid = Integer.parseInt(request.getParameter("fid"));
+                            Folder f = Folder.getFolder(fid);
+                            if (u!=null && (u.isAdmin() || (f.getUid() == u.getId()))) {
+                        %>
+                        <hr>
+                        <div class="flex-row">
+                            <div class="col-md-12 text-xs-center">
+                                <div class="btn-group m-b-20 ">
+                                    <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditFolder.jsp?fid=${param.fid}">
+                                    <span class="btn-label"><i class="zmdi zmdi-edit"></i>
+                                    </span>Chỉnh sửa</a>
+                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteFolder.jsp?fid=${param.fid}">
+                                    <span class="btn-label"><i class="zmdi zmdi-delete"></i>
+                                    </span>Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% 
+                            }
+                        %>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
@@ -62,7 +94,7 @@
                             <tbody>
                                 <c:forEach var="d" items="${folder.allLesson}">
                                     <tr>
-                                        <td>${d.title}</td>
+                                        <td><a href="./Lesson.jsp?lid=${d.lid}">${d.title}</a></td>
                                         <td>${d.typeShare}</td>
                                         <td>${d.author}</td>
                                     </tr>
@@ -80,6 +112,12 @@
     <script>
         new Vue({
             el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+        new Vue({
+            el: "#box-author",
             components: {
                 'avatar': Avatar.Avatar
             }

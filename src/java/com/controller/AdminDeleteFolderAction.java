@@ -6,16 +6,17 @@
 package com.controller;
 
 import com.model.Folder;
+import static com.opensymphony.xwork2.Action.ERROR;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  *
  * @author USER
  */
-public class EditFolderAction extends ActionSupport {
+public class AdminDeleteFolderAction extends ActionSupport {
     
-    private int fid, shareFolder;
-    private String name;
+    private int fid;
 
     public int getFid() {
         return fid;
@@ -24,27 +25,12 @@ public class EditFolderAction extends ActionSupport {
     public void setFid(int fid) {
         this.fid = fid;
     }
-    public int getShareFolder() {
-        return shareFolder;
-    }
-
-    public void setShareFolder(int shareFolder) {
-        this.shareFolder = shareFolder;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public EditFolderAction() {
+    
+    public AdminDeleteFolderAction() {
     }
     
     public String execute() throws Exception {
-        boolean b = Folder.updateFolder(fid, name, shareFolder);
+        boolean b = Folder.deleteFolder(fid);
         if(b) return SUCCESS;
         else return ERROR;
     }

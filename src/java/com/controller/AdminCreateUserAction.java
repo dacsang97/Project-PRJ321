@@ -12,26 +12,25 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
     
-public class AdminEditUserAction extends ActionSupport {
-    String newPass, rePass;
+public class AdminCreateUserAction extends ActionSupport {
+    String newPass, rePass, username;
     int state;
-    int uid;
     Map session;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
     public int getState() {
         return state;
     }
 
     public void setState(int state) {
         this.state = state;
-    }
-    
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
     }
     
     public String getNewPass() {
@@ -49,7 +48,8 @@ public class AdminEditUserAction extends ActionSupport {
     public void setRePass(String rePass) {
         this.rePass = rePass;
     }
-    public AdminEditUserAction() {
+            
+    public AdminCreateUserAction() {
         session = (Map) ActionContext.getContext().get("session");
     }
     
@@ -58,20 +58,9 @@ public class AdminEditUserAction extends ActionSupport {
         if(!newPass.equals(rePass)){
             return ERROR;
         }
-        User x = User.getUser(uid);
-        if(x.isAdmin()){
-            state = 2;     
-            User.updateUser(uid, newPass, state);
-        }else{
-            User.updateUser(uid, newPass, state);
-        }      
-        session = (Map) ActionContext.getContext().get("session");
-        //User user = User.getUser(uid);
-        boolean change = User.updatePassword(newPass, uid);    
-        if(change == true) {          
-            return SUCCESS;
-        } 
-          return ERROR;
-    }
-    
+        System.out.println(newPass);
+        System.out.println(rePass);
+        User.createUser(username, newPass, state);
+        return SUCCESS;
+    }   
 }

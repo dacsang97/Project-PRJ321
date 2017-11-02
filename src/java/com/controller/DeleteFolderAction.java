@@ -21,7 +21,6 @@ public class DeleteFolderAction extends ActionSupport {
 
     private int fid;
     Map session;
-
     public int getFid() {
         return fid;
     }
@@ -29,26 +28,12 @@ public class DeleteFolderAction extends ActionSupport {
     public void setFid(int fid) {
         this.fid = fid;
     }
-
-    public Map getSession() {
-        return session;
-    }
-
-    public void setSession(Map session) {
-        this.session = session;
-    }
-
     public DeleteFolderAction() {
     }
-
+    
     public String execute() throws Exception {
-        session = (Map) ActionContext.getContext().get("session");
-
-        boolean delete = Folder.DeleteFolder(fid);
-        if (delete == true) {
-            return SUCCESS;
-        }
-        return ERROR;
-
+        boolean b = Folder.deleteFolder(fid);
+        if(b) return SUCCESS;
+        else return ERROR;
     }
 }

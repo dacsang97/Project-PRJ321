@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class Folder {
      }
      
      
-    public String getTypeshare(){
+    public String getTypeShare(){
         switch(sharefolder){
             case 1:
                 return "Chỉ mình tôi";
@@ -106,6 +107,22 @@ public class Folder {
             return uid;
         }
         return -1;
+    }
+    
+    public static void deleteLesson(int fid) throws Exception{
+        String query = "delete from Folders_PK_Lessons where fid = " + fid;
+        new DBContext().getConnection().createStatement().executeUpdate(query); 
+    }
+    
+    public static void addLessonToFolder(int fid, Lesson[] list) throws Exception {
+        String query = "insert into Folders_PK_Lessons values (?, ?)";
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        ps.setInt(1, fid);
+        for (Lesson l: list) {
+            ps.setInt(2, l.getLid());
+            ps.executeUpdate();
+        }
+        ps.close();
     }
     
     public static String getFolderName(int fid) throws Exception {
@@ -137,21 +154,22 @@ public class Folder {
         return null;
     }
 
-    public static boolean createFolder(String name, int uid, int sharefolder) throws Exception {
+    public static int createFolder(String name, int uid, int sharefolder) throws Exception {
         String query = "insert into Folders values (?, ?, ?)";
-        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
+        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, name);
         ps.setInt(2, uid);
         ps.setInt(3, sharefolder);
-        int row = ps.executeUpdate();
-        if (row > 0) {
-            return true;
-        } else {
-            return false;
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            return id;
         }
+        return -1;
     }
 
-    public static boolean DeleteFolder(int fid) throws Exception {
+    public static boolean deleteFolder(int fid) throws Exception {
 
         String query = "delete from Folders where fid = " + fid;
         Connection conn = new DBContext().getConnection();

@@ -19,7 +19,7 @@
 <!-- Sweet Alert js -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
 <!-- App js -->
 <script src="assets/js/jquery.core.js"></script>
 <script src="assets/js/jquery.app.js"></script>
