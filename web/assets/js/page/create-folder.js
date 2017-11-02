@@ -8,29 +8,9 @@ new Vue({
       shareType: ["Chỉ mình tôi", "Thành viên", "Công khai"],
       currentList: [],
       remainList: lessons,
-      error: false,
-      list: [
-        {
-          name: "John"
-        },
-        {
-          name: "Joao"
-        },
-        {
-          name: "Jean"
-        }
-      ],
-      list2: [
-        {
-          name: "Juan"
-        },
-        {
-          name: "Edgard"
-        },
-        {
-          name: "Johnson"
-        }
-      ]
+      error: {},
+      submited: false,
+      lessons: ""
     };
   },
   computed: {
@@ -54,28 +34,32 @@ new Vue({
   },
   methods: {
     onSubmit() {
+      this.error = {
+        title: false,
+        list: false
+      };
+      this.submited = true;
       if (this.title === "") {
-        this.error = true;
-      } else {
-        this.error = false;
+        this.error.title = true;
       }
-      if (!this.error) {
-        // this.quizStr = JSON.stringify(this.quizzes);
-        // var params = new URLSearchParams();
-        // params.append("quizzesTemp", JSON.stringify(this.quizzes));
-        // params.append("title", this.title);
-        // params.append("share", this.type);
-        // axios
-        //   .post("./CreateLessonAction", params)
-        //   .then(response => {
-        //     // console.log(response);
-        //     swal("Chúc mừng bạn vừa tạo xong bài học.").then(value => {
-        //       location.href = `./Lesson.jsp?lid=${response.headers.lid}`;
-        //     });
-        //   })
-        //   .catch(err => {
-        //     console.log(err);
-        //   });
+      if (this.currentList.length === 0) {
+        this.error.list = true;
+      }
+      if (!this.error.title && !this.error.list) {
+        var params = new URLSearchParams();
+        params.append("lessonsTemp", JSON.stringify(this.currentList));
+        params.append("name", this.title);
+        params.append("sharefolder", this.type);
+        axios
+          .post("./CreateFolderAction", params)
+          .then(response => {
+            swal("Chúc mừng bạn vừa tạo xong chuyên mục.").then(value => {
+              location.href = `./Folder.jsp?fid=${response.headers.fid}`;
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     }
   }
