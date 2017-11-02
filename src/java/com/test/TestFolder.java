@@ -27,11 +27,11 @@ public class TestFolder extends TestCase {
     }
     
      public void testDeleteFolder() throws Exception {
-        assertEquals(true, Folder.DeleteFolder(4));
+        assertEquals(true, Folder.deleteFolder(4));
     }
     
     public void testDeleteFolderFalse() throws Exception {
-        assertEquals(false,Folder.DeleteFolder(1000));
+        assertEquals(false,Folder.deleteFolder(1000));
     }
     
     public void testGetListFolder() throws Exception{
