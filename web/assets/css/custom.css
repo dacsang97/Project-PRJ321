@@ -104,3 +104,35 @@
 .list-group-item i{
   cursor: pointer;
 }
+
+.no-lesson {
+    background: #eee;
+    border: 3px dashed #2b3d51;
+    border-radius: 10px;
+}
+
+.no-lesson.lesson-error {
+    background: #eee;
+    border: 3px dashed #ff5d48;
+    border-radius: 10px;
+}
+
+.no-lesson::before {
+    content: "Kéo bài học vào đây";
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: #2b3d51a3;
+}
+
+.lesson-error::before {
+    content: "Vui lòng chọn bài học";
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: #ff5d48;
+}

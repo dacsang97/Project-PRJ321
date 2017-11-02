@@ -54,9 +54,10 @@ public class AdminCreateFolderAction extends ActionSupport {
     public String execute() throws Exception {
         session = (Map) ActionContext.getContext().get("session");
         User u = (User)session.get("user");
-        boolean b = Folder.createFolder(name, u.getId(), shareFolder);
-        if(b) return SUCCESS;
-        else return ERROR;
+//        boolean b = Folder.createFolder(name, u.getId(), shareFolder);
+//        if(b) return SUCCESS;
+//        else return ERROR;
+        return SUCCESS;
     }
     
 }

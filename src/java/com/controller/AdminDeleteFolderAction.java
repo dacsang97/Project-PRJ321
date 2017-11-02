@@ -30,7 +30,7 @@ public class AdminDeleteFolderAction extends ActionSupport {
     }
     
     public String execute() throws Exception {
-        boolean b = Folder.DeleteFolder(fid);
+        boolean b = Folder.deleteFolder(fid);
         if(b) return SUCCESS;
         else return ERROR;
     }
