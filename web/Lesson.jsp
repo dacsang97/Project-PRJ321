@@ -137,6 +137,12 @@
                                                     location.href = `./MyLesson.jsp`;
                                                 })
                                             })
+                                            .catch(() => {
+                                                swal({
+                                                    icon: "error",
+                                                    text: "Có lỗi xảy ra"
+                                                })
+                                            })
                                 }
 
                             })

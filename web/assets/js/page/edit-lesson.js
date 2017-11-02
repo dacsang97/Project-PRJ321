@@ -12,6 +12,15 @@ new Vue({
       quizCount: quizzes.length
     };
   },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 0,
+        group: "description",
+        ghostClass: "ghost"
+      };
+    }
+  },
   created() {
     this.quizzes = this.quizzes.map(item => ({
       ...item,

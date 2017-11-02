@@ -1,3 +1,5 @@
+<%@page import="com.model.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Navigation Bar-->
 <header id="topnav">
@@ -75,7 +77,15 @@
                             <div class="dropdown-item noti-title">
                                 <h5 class="text-overflow"><small>Chào ${sessionScope.user.username}</small> </h5>
                             </div>
-
+                            <%
+                                User u = (User) session.getAttribute("user");
+                                if (u.isAdmin()) {
+                            %>
+                            <a href="./admin" class="dropdown-item notify-item">
+                                <i class="ion-social-freebsd-devil"></i> <span>AdminCP</span>
+                            </a>
+                            <% } %>
+                            
                             <!-- item-->
                             <a href="./Profile.jsp" class="dropdown-item notify-item">
                                 <i class="zmdi zmdi-account-circle"></i> <span>Thông tin tài khoản</span>

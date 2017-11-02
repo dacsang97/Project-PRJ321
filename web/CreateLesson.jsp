@@ -31,8 +31,9 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-6 col-xl-9">
+                        <draggable v-model="quizzes" class="dragArea" :options="dragOptions">
                         <transition-group
-                            name="add-question"
+                            name="flip-list"
                             enter-active-class="animated pulse"
                             leave-active-class="animated fadeOut"
                             mode="out-in"
@@ -66,6 +67,7 @@
                                 </div>
                             </div>
                         </transition-group>
+                        </draggable>
                         <div class="card-box tilebox-one text-center">
                             <button type="button" class="btn btn-success-outline waves-effect waves-light" @click="onAddQuestion">Thêm câu hỏi</button>
                         </div>
@@ -87,4 +89,6 @@
             }
         })
     </script>
+    <script src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"></script>
+    <script src="https://cdn.rawgit.com/David-Desmaisons/Vue.Draggable/master/dist/vuedraggable.min.js"></script>
     <script src="./assets/js/page/create-lesson.js"></script>
