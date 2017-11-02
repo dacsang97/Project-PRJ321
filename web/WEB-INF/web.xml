@@ -17,6 +17,7 @@
         <url-pattern>/MyLesson.jsp</url-pattern>
         <url-pattern>/EditProfile.jsp</url-pattern>
         <url-pattern>/MyFolder.jsp</url-pattern>
+        <url-pattern>/CreateLesson.jsp</url-pattern>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <filter-mapping>

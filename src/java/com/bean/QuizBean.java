@@ -33,6 +33,22 @@ public class QuizBean {
         return "";
     }
     
+    public String getAuthor() throws Exception {
+        Lesson l = Lesson.getLesson(lid);
+        if (l != null) {
+            return l.getAuthor();
+        }
+        return "";
+    }    
+    
+    public int getType() throws Exception {
+        Lesson l = Lesson.getLesson(lid);
+        if (l != null) {
+            return l.getShare();
+        }
+        return 0;
+    }
+    
     public List<Quiz> getQuizs() throws Exception {
         List<Quiz> quizs = Quiz.getLessonQuiz(lid);
         return quizs;

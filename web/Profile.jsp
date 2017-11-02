@@ -22,7 +22,7 @@
                         <span class="label label-success"> Thành viên </span>
                         <% }%>
                         <h2 class="m-b-20">${sessionScope.user.username}</h2>
-                        
+
                         <hr />
                         <div class="row">
                             <div class="col-md-6">
@@ -41,3 +41,11 @@
 
     </div>
     <%@include file="partial/footer.jsp" %>
+    <script>
+        new Vue({
+            el: "#menu-extras",
+            components: {
+                'avatar': Avatar.Avatar
+            }
+        })
+    </script>
