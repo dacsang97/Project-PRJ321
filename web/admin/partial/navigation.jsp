@@ -4,7 +4,7 @@
 
     <!-- LOGO -->
     <div class="topbar-left">
-        <a href="index.html" class="logo">
+        <a href="../" class="logo">
             <i class="ti-ruler-alt-2"></i>
             <span>Quizless</span></a>
     </div>
@@ -42,7 +42,7 @@
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="../LogoutAction" class="dropdown-item notify-item">
                         <i class="zmdi zmdi-power"></i> <span>Đăng xuất</span>
                     </a>
 
@@ -69,7 +69,13 @@
                 <li class="has_sub">
                     <a href="./" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Bảng điều khiển </span> </a>
                 </li>
-
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-format-underlined"></i> <span> Thành viên </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="./AdminListUser.jsp">Danh sách thành viên</a></li>
+                        <li><a href="./AdminCreateUser.jsp">Tạo thành viên mới</a></li>
+                    </ul>
+                </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-storage"></i> <span> Chuyên mục </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
@@ -86,14 +92,7 @@
                         <li><a href="ui-dropdowns.html">Dropdowns</a></li>
                     </ul>
                 </li>
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-format-underlined"></i> <span> Thành viên </span> <span class="menu-arrow"></span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="ui-buttons.html">Buttons</a></li>
-                        <li><a href="ui-cards.html">Cards</a></li>
-                        <li><a href="ui-dropdowns.html">Dropdowns</a></li>
-                    </ul>
-                </li>
+                
             </ul>
             <div class="clearfix"></div>
         </div>

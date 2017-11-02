@@ -54,6 +54,10 @@ public class UserBean {
         return 1 + size / pageSize;
     }
     
+    public List<User> getAllUsers() throws Exception {
+        return User.getListUser();
+    }
+    
     public List<User> getUsers() throws Exception{
         if (page == 0) {
             page = 1;
