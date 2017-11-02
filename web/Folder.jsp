@@ -67,10 +67,10 @@
                         <div class="flex-row">
                             <div class="col-md-12 text-xs-center">
                                 <div class="btn-group m-b-20 ">
-                                    <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditLesson.jsp?lid=${param.lid}">
+                                    <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditFolder.jsp?fid=${param.fid}">
                                     <span class="btn-label"><i class="zmdi zmdi-edit"></i>
                                     </span>Chỉnh sửa</a>
-                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteLesson.jsp?lid=${param.lid}">
+                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteFolder.jsp?fid=${param.fid}">
                                     <span class="btn-label"><i class="zmdi zmdi-delete"></i>
                                     </span>Xóa</a>
                                 </div>

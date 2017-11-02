@@ -39,27 +39,27 @@
                         <h6 class="text-muted text-uppercase m-b-20">Hiện có</h6>
                         <h2 class="m-b-20" data-plugin="counterup">${quizs.quizs.size()}</h2>
                         <span class="text-muted">Câu hỏi</span>
-                        
-                        <% 
+
+                        <%
                             User u = (User) session.getAttribute("user");
                             int lid = Integer.parseInt(request.getParameter("lid"));
                             Lesson l = Lesson.getLesson(lid);
-                            if (u!=null && (u.isAdmin() || (l.getUid() == u.getId()))) {
+                            if (u != null && (u.isAdmin() || (l.getUid() == u.getId()))) {
                         %>
                         <hr>
-                        <div class="flex-row">
+                        <div class="flex-row" id="lesson-action">
                             <div class="col-md-12 text-xs-center">
                                 <div class="btn-group m-b-20 ">
                                     <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditLesson.jsp?lid=${param.lid}">
-                                    <span class="btn-label"><i class="zmdi zmdi-edit"></i>
-                                    </span>Chỉnh sửa</a>
-                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteLesson.jsp?lid=${param.lid}">
-                                    <span class="btn-label"><i class="zmdi zmdi-delete"></i>
-                                    </span>Xóa</a>
+                                        <span class="btn-label"><i class="zmdi zmdi-edit"></i>
+                                        </span>Chỉnh sửa</a>
+                                    <button type="button" class="btn btn-sm btn-danger waves-effect waves-light"  @click="onDelete">
+                                        <span class="btn-label"><i class="zmdi zmdi-delete"></i></span>Xóa
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <% 
+                        <%
                             }
                         %>
                     </div>
@@ -105,6 +105,48 @@
                 'avatar': Avatar.Avatar
             }
         })
+    </script>
+    <%
+        if (u != null && (u.isAdmin() || (l.getUid() == u.getId()))) {
+    %>
+    <script>
+        new Vue({
+            el: "#lesson-action",
+            methods: {
+                onDelete() {
+                    swal({
+                        text: "Bạn có chắc chắn muốn xóa bài học này?",
+                        buttons: {
+                            cancel: "Không",
+                            confirm: {
+                                text: "Đồng ý",
+                                value: true
+                            }
+                        }
+
+                    })
+                            .then((value) => {
+                                if (value) {
+                                    axios.post("./DeleteLessonAction?lid=${param.lid}")
+                                            .then(() => {
+                                                swal({
+                                                    icon: "success",
+                                                    text: "Đã xóa bài học thành công"
+                                                })
+                                                .then(() => {
+                                                    location.href = `./MyLesson.jsp`;
+                                                })
+                                            })
+                                }
+
+                            })
+                    let x = 'href="./DeleteLesson.jsp?lid=${param.lid}"'
+                }
+            }
+        })
+        <%
+            }
+        %>
     </script>
     <%@include file="partial/datatable.jsp" %>
 
