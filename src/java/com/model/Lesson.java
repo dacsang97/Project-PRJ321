@@ -195,6 +195,24 @@ public class Lesson {
         return l;
     }
     
+      public static ArrayList<Folder> getFolderLesson(int fid) throws Exception {
+        ArrayList<Folder> Folders = new ArrayList<>();
+        String query = "select * from Folders where fid = " + fid;
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+
+        while (rs.next()) {
+            int uid = rs.getInt("uid");
+            String name = rs.getString("name");
+            int sharefolder = rs.getInt("sharefolder");
+            int id = rs.getInt("fid");
+
+            Folders.add(new Folder(id, uid, name, sharefolder));
+
+        }
+        return Folders;
+    }
+    
     public static int getCountLesson(int uid) throws Exception {
         String query = "select count(*) from Lessons";
         if(uid != -1) query += " where uid = " + uid;
