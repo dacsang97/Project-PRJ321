@@ -1,4 +1,14 @@
-#create-lesson, #edit-lesson, #create-folder .box-info {
+#create-lesson .box-info {
+    position: fixed;
+    width: 21.5%;
+}
+
+#edit-lesson .box-info {
+    position: fixed;
+    width: 21.5%;
+}
+
+#create-folder .box-info {
     position: fixed;
     width: 21.5%;
 }
