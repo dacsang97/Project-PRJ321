@@ -197,7 +197,15 @@ public class Lesson {
     
       public static ArrayList<Folder> getFolderLesson(int fid) throws Exception {
         ArrayList<Folder> Folders = new ArrayList<>();
-        String query = "select * from Folders where fid = " + fid;
+        String query = "select * from Folders as fol";
+        int k = 0;
+        if(fid != -1){
+            query += " INNER JOIN Folders_PK_Lessons as fpk on fol.fid = fpk.fid "
+                    + " INNER JOIN Folders_PK_Lessons as fpk on fol.lid = fpk.lid where fol.fid =" + fid;
+                   
+                    
+            k++;
+        }
         Connection conn = new DBContext().getConnection();
         ResultSet rs = conn.prepareStatement(query).executeQuery();
 
