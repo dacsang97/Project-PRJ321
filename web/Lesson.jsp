@@ -97,8 +97,6 @@
                 'avatar': Avatar.Avatar
             }
         })
-    </script>
-    <script>
         new Vue({
             el: "#box-author",
             components: {
@@ -146,13 +144,13 @@
                                 }
 
                             })
-                    let x = 'href="./DeleteLesson.jsp?lid=${param.lid}"'
                 }
             }
         })
-        <%
-            }
-        %>
+        
     </script>
+    <%
+        }
+    %>
     <%@include file="partial/datatable.jsp" %>
 

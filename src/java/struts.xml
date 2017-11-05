@@ -39,8 +39,6 @@
             </result>
             <result name="error" type="httpheader">
                 <param name="status">500</param>
-                <param name="headers.a">a custom header value</param>
-                <param name="headers.b">another custom header value</param>
             </result>
         </action>
         
@@ -50,8 +48,6 @@
             </result>
             <result name="error" type="httpheader">
                 <param name="status">500</param>
-                <param name="headers.a">a custom header value</param>
-                <param name="headers.b">another custom header value</param>
             </result>
         </action>
         
@@ -83,7 +79,12 @@
         </action>
         
         <action name="DeleteFolderAction" class="com.controller.DeleteFolderAction" method="execute">
-            
+            <result name="success" type="httpheader">
+                <param name="status">200</param>
+            </result>
+            <result name="error" type="httpheader">
+                <param name="status">500</param>
+            </result>
         </action>
         
         <action name="AdminCreateLessonAction" class="com.controller.AdminCreateLessonAction" method="execute">
