@@ -64,15 +64,15 @@
                             if (u!=null && (u.isAdmin() || (f.getUid() == u.getId()))) {
                         %>
                         <hr>
-                        <div class="flex-row">
+                        <div class="flex-row" id="folder-action">
                             <div class="col-md-12 text-xs-center">
                                 <div class="btn-group m-b-20 ">
                                     <a class="btn btn-sm btn-warning waves-effect waves-light" href="./EditFolder.jsp?fid=${param.fid}">
                                     <span class="btn-label"><i class="zmdi zmdi-edit"></i>
                                     </span>Chỉnh sửa</a>
-                                    <a class="btn btn-sm btn-danger waves-effect waves-light"  href="./DeleteFolder.jsp?fid=${param.fid}">
-                                    <span class="btn-label"><i class="zmdi zmdi-delete"></i>
-                                    </span>Xóa</a>
+                                    <button type="button" class="btn btn-sm btn-danger waves-effect waves-light"  @click="onDelete">
+                                        <span class="btn-label"><i class="zmdi zmdi-delete"></i></span>Xóa
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -123,4 +123,52 @@
             }
         })
     </script>
+    <%
+        if (u != null && (u.isAdmin() || (f.getUid() == u.getId()))) {
+    %>
+    <script>
+        new Vue({
+            el: "#folder-action",
+            methods: {
+                onDelete() {
+                    swal({
+                        text: "Bạn có chắc chắn muốn xóa chuyên mục này?",
+                        buttons: {
+                            cancel: "Không",
+                            confirm: {
+                                text: "Đồng ý",
+                                value: true
+                            }
+                        }
+
+                    })
+                            .then((value) => {
+                                if (value) {
+                                    axios.post("./DeleteFolderAction?fid=${param.fid}")
+                                            .then(() => {
+                                                swal({
+                                                    icon: "success",
+                                                    text: "Đã xóa bài học thành công"
+                                                })
+                                                .then(() => {
+                                                    location.href = `./MyFolder.jsp`;
+                                                })
+                                            })
+                                            .catch(() => {
+                                                swal({
+                                                    icon: "error",
+                                                    text: "Có lỗi xảy ra"
+                                                })
+                                            })
+                                }
+
+                            })
+                }
+            }
+        })
+        
+    </script>
+    <%
+            }
+        %>
     <%@include file="partial/datatable.jsp" %>
