@@ -78,7 +78,7 @@ public class CreateFolderAction extends ActionSupport implements
 
             return ERROR;
         }
-        Folder.deleteLesson(sharefolder);
+        Folder.deleteLesson(fid);
         Folder.addLessonToFolder(fid, lessons);
         response.setHeader("fid", ""+fid);
 

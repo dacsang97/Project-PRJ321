@@ -120,6 +120,7 @@ public class Folder {
         ps.setInt(1, fid);
         for (Lesson l: list) {
             ps.setInt(2, l.getLid());
+            System.out.println(l);
             ps.executeUpdate();
         }
         ps.close();
@@ -147,7 +148,7 @@ public class Folder {
             int sharefolder = rs.getInt("sharefolder");
             int id = rs.getInt("fid");
             if (id == fid) {
-                return new Folder(uid, name, sharefolder);
+                return new Folder(fid, uid, name, sharefolder);
             }
 
         }
