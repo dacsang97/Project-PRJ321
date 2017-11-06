@@ -55,9 +55,13 @@
                                             <td>${q.username}</td>
                                             <td>${q.permission == 1?"Quản trị viên":"Thành viên"}</td>
                                             <td>
-                                                <c:url var="u" value="AdminEditUser.jsp">
-                                                    <c:param name="uid" value="${q.id}"/>
-                                                </c:url>                    
+                                                <c:choose>
+                                                    <c:when test="${q.id!=1}">
+                                                        <c:url var="u" value="AdminEditUser.jsp">
+                                                            <c:param name="uid" value="${q.id}"/>
+                                                        </c:url> 
+                                                    </c:when>
+                                                </c:choose>                   
                                                 <c:choose>                          
                                                     <c:when test="${uid==1}">
                                                         <a href="${u}">${q.id != 1?"Chỉnh sửa":""}</a>
@@ -68,9 +72,13 @@
                                                 </c:choose>
                                             </td>
                                             <td>
-                                                <c:url var="u" value="AdminDeleteUserAction">
-                                                    <c:param name="uid" value="${q.id}"/>
-                                                </c:url>
+                                                <c:choose>
+                                                    <c:when test="${q.id!=1}">
+                                                        <c:url var="u" value="AdminDeleteUserAction">
+                                                            <c:param name="uid" value="${q.id}"/>
+                                                        </c:url> 
+                                                    </c:when>
+                                                </c:choose> 
                                                 <c:choose>                          
                                                     <c:when test="${uid==1}">
                                                         <a href="${u}">${q.id != 1?"Xóa":""}</a>
