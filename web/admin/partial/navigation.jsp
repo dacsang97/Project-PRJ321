@@ -79,17 +79,15 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-storage"></i> <span> Chuyên mục </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="ui-buttons.html">Buttons</a></li>
-                        <li><a href="ui-cards.html">Cards</a></li>
-                        <li><a href="ui-dropdowns.html">Dropdowns</a></li>
+                        <li><a href="./AdminListFolder.jsp">Danh sách chuyên mục</a></li>
+                        <li><a href="../CreateFolder.jsp">Tạo chuyên mục mới</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shape"></i> <span> Bài học </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="ui-buttons.html">Buttons</a></li>
-                        <li><a href="ui-cards.html">Cards</a></li>
-                        <li><a href="ui-dropdowns.html">Dropdowns</a></li>
+                        <li><a href="./AdminListLesson.jsp">Danh sách bài học</a></li>
+                        <li><a href="../CreateLesson.jsp">Tạo bài học mới</a></li>
                     </ul>
                 </li>
                 

@@ -25,7 +25,7 @@
                             <fieldset class="form-group">
                                 <label class="form-control-label" for="share">Trạng thái</label>
                                 <select class="form-control" id="share" name="share" v-model="type">
-                                    <option v-for="(type, index) in shareType" :value="index+1">{{ type }}</option>
+                                    <option v-for="(type, index) in shareType" :value="index+1" :key="index">{{ type }}</option>
                                 </select>
                             </fieldset>
                             <button type="submit" class="btn btn-block btn-primary" @click.prevent="onSubmit">Tạo</button>
