@@ -50,7 +50,7 @@ new Vue({
         var params = new URLSearchParams();
         params.append("lessonsTemp", JSON.stringify(this.currentList));
         params.append("name", this.title);
-        params.append("sharefolder", this.type);
+        params.append("shareFolder", this.type);
         params.append("fid", this.fid);
         axios
           .post("./EditFolderAction", params)

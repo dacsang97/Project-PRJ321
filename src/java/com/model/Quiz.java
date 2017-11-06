@@ -91,8 +91,8 @@ public class Quiz {
     public static boolean createQuiz(String question, String anwser, int lid) throws Exception {
         String query = "insert into Quiz values (?, ?, ?)";
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-        ps.setString(1, question);
-        ps.setString(2, anwser);
+        ps.setNString(1, question);
+        ps.setNString(2, anwser);
         ps.setInt(3, lid);
         int row = ps.executeUpdate();
         if (row > 0) {

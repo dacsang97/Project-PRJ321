@@ -171,7 +171,7 @@ public class Folder {
     }
 
     public static boolean deleteFolder(int fid) throws Exception {
-
+        Folder.deleteLesson(fid);
         String query = "delete from Folders where fid = " + fid;
         Connection conn = new DBContext().getConnection();
         PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
