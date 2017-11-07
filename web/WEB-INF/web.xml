@@ -21,6 +21,7 @@
         <url-pattern>/EditLesson.jsp</url-pattern>
         <url-pattern>/CreateFolder.jsp</url-pattern>
         <url-pattern>/EditFolder.jsp</url-pattern>
+        <url-pattern>/Profile.jsp</url-pattern>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <filter-mapping>

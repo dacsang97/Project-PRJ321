@@ -226,7 +226,7 @@ public class Folder {
         return f;
     }
 
-    public static boolean getCountFolder(int uid) throws Exception {
+    public static int getCountFolder(int uid) throws Exception {
         String query = "select count(*) from Folders";
 //            ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
 //            int k = 0;
@@ -236,16 +236,12 @@ public class Folder {
 //                    query += "uid = " + uid;
 //                    k++;
 
-            query += "where uid = " + uid;
+            query += " where uid = " + uid;
         }
-        Connection conn = new DBContext().getConnection();
-        PreparedStatement ps = new DBContext().getConnection().prepareStatement(query);
-        int row = ps.executeUpdate();
-        if (row > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ResultSet rs = new DBContext().getConnection().prepareStatement(query).executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        return count;
     }
 
     public static boolean updateFolder(int fid, String name, int sharefolder) throws Exception {
