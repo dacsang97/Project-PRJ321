@@ -195,6 +195,33 @@ public class Lesson {
         return l;
     }
     
+      public static List<Lesson> getFolderLesson(int fid) throws Exception {
+        List<Lesson> l = new ArrayList<>();
+        String query = "select * from Folders as fol";
+        int k = 0;
+        if(fid != -1){
+            query += " INNER JOIN Folders_PK_Lessons as fpk on fol.fid = fpk.fid "
+                    + " INNER JOIN Folders_PK_Lessons as fpk on fol.lid = fpk.lid where fol.fid =" + fid;
+                   
+                    
+            k++;
+        }
+        Connection conn = new DBContext().getConnection();
+        ResultSet rs = conn.prepareStatement(query).executeQuery();
+
+        while (rs.next()) {
+            int lid = rs.getInt("lid");
+            String title = rs.getString("title");
+            int uid = rs.getInt("uid");
+            int share = rs.getInt("share");
+
+            l.add(new Lesson(lid, title, uid, share));
+
+        }
+        rs.close();
+        return l;
+    }
+    
     public static int getCountLesson(int uid) throws Exception {
         String query = "select count(*) from Lessons";
         if(uid != -1) query += " where uid = " + uid;
